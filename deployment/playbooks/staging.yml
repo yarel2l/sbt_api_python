@@ -2,6 +2,7 @@
 - name: Staging app deployment
   hosts: app-staging
   become: yes
+  become_method: sudo
   tasks:
 
     - name: Create database
