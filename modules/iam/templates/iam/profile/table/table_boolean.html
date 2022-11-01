@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% if record.is_active %}
+    <span class="label label-success label-inline mr-2">{% trans 'Active' %}</span>
+{% else %}
+    <span class="label label-danger label-inline mr-2">{% trans 'Inactive' %}</span>
+{% endif %}

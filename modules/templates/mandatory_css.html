@@ -1,0 +1,71 @@
+{% load static %}
+
+{% comment %}<link rel="shortcut icon" href="{% static 'assets/media/logos/favicon.ico' %}" />{% endcomment %}
+<!--begin::Fonts-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+<!--end::Fonts-->
+<!--begin::Global Stylesheets Bundle(used by all pages)-->
+<link href="{% static 'assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
+<!--end::Global Stylesheets Bundle-->
+
+<link href="{% static 'assets/css/django_select2.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'assets/css/tables.css' %}" rel="stylesheet">
+<link href="{% static 'assets/plugins/global/dual-listbox/assets/dual-listbox.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/dual_listbox.css' %}" rel="stylesheet">
+
+
+<style>
+
+    .iti {
+        position: relative !important;
+        display: flex !important;
+    }
+
+    .iti .iti--allow-dropdown {
+        width: 100% !important;
+    }
+
+    .intl-tel-input {
+        position: relative;
+        display: inline-block;
+        width: 100% !important;
+    }
+
+    .pac-target-input {
+        z-index: 10000000 !important;
+    }
+
+    body.swal2-shown > [aria-hidden="true"] {
+      filter: blur(10px);
+    }
+
+    .btn.btn-custom {
+        color: var(--kt-primary-inverse);
+        border-color: #b22335;
+        background-color: #b22335;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 26px;
+        position: absolute;
+        top: 7px;
+        right: 5px;
+        width: 50px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #444;
+        line-height: inherit;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        display: block;
+        padding-left: 0;
+        padding-right: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+</style>

@@ -1,0 +1,4 @@
+{% load static %}
+{% if user.is_authenticated %}
+    <script src="{% static 'iam/assets/js/update_timezone.js' %}" data-url="{{ upd_tz_endpoint }}" data-utz="{{ utz }}" type="text/javascript"></script>
+{% endif %}

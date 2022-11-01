@@ -1,0 +1,16 @@
+
+{% comment %}<div class="card card-flush">
+    <div class="card-body pb-5">{% endcomment %}
+        {% for field in form.visible_fields %}
+            {% comment %}{% include 'form_snippets/translated_field.html' with field=field %}{% endcomment %}
+            {% comment %}{% include 'form_snippets/formset_input_fields.html' with field=field %}{% endcomment %}
+
+            {% include "form_snippets/translated_form_fields.html" with form=form %}
+            {% include "form_snippets/input_fields.html" with field=field %}
+        {% endfor %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+    {% comment %}</div>
+</div>{% endcomment %}
+

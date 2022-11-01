@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!--begin::Illustration-->
+<div class="text-center pb-15 px-5 py-lg-20">
+    <img src="{% static 'assets/images/illustrations/sketchy-1/4.png' %}" alt="" class="mw-100 h-200px h-sm-325px" />
+</div>
+<!--end::Illustration-->
+
+
+{% comment %}<div class="card">
+    <!--begin::Card body-->
+    <div class="card-body">
+        <!--begin::Heading-->
+        <div class="card-px text-center pt-15 pb-15">
+            <!--begin::Title-->
+            <h2 class="fs-2x fw-bold mb-0">{% trans "Oauth2 Applications" %}</h2>
+            <!--end::Title-->
+            <!--begin::Description-->
+            <p class="text-gray-400 fs-4 fw-semibold py-7">
+                {% blocktrans %}
+                Click on the below buttons to launch
+                <br />create app form.
+                {% endblocktrans %}
+            </p>
+            <!--end::Description-->
+            <!--begin::Action-->
+            <a href="{% url 'app-registration' %}" class="btn btn-primary er fs-6 px-8 py-4">{% trans "Create App" %}</a>
+            <!--end::Action-->
+        </div>
+        <!--end::Heading-->
+        <!--begin::Illustration-->
+        <div class="text-center pb-15 px-5">
+            <img src="{% static 'assets/images/illustrations/sketchy-1/4.png' %}" alt="" class="mw-100 h-200px h-sm-325px" />
+        </div>
+        <!--end::Illustration-->
+    </div>
+    <!--end::Card body-->
+</div>{% endcomment %}
+{% endblock %}

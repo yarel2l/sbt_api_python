@@ -1,0 +1,94 @@
+{% extends "account/base.html" %}
+{% load i18n static widget_tweaks sekizai_tags %}
+
+{% block title %}{% trans 'Sign In' %}{% endblock %}
+
+{% block content %}
+<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="post" action="{% url 'account_login' %}">{% csrf_token %}
+    <!--begin::Heading-->
+    <div class="text-center mb-11">
+        <!--begin::Title-->
+        <h1 class="text-dark fw-bolder mb-3">{% trans "Sign In" %}</h1>
+        <!--end::Title-->
+        <!--begin::Subtitle-->
+        {% comment %}<div class="text-gray-500 fw-semibold fs-6">{% trans "Your Social Campaigns" %}</div>{% endcomment %}
+        <!--end::Subtitle=-->
+    </div>
+    <!--begin::Heading-->
+{% comment %}    <!--begin::Login options-->
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    <!--end::Login options-->
+    <!--begin::Separator-->
+    <div class="separator separator-content my-14">
+        <span class="w-125px text-gray-500 fw-semibold fs-7">{% trans "Or with email" %}</span>
+    </div>
+    <!--end::Separator-->{% endcomment %}
+    <!--begin::Input group=-->
+    <div class="fv-row mb-8">
+        <!--begin::Email-->
+        {% render_field form.login class="form-control form-control-lg form-control-solid" autocomplete="off" %}
+        <!--end::Email-->
+    </div>
+    <!--end::Input group=-->
+    <div class="fv-row mb-8" data-kt-password-meter="true">
+        <!--begin::Wrapper-->
+        <div class="mb-1">
+            <!--begin::Input wrapper-->
+            <div class="position-relative mb-3">
+                {% render_field form.password class="form-control form-control-lg form-control-solid" autocomplete="off" %}
+                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+                    <i class="bi bi-eye-slash fs-2"></i>
+                    <i class="bi bi-eye fs-2 d-none"></i>
+                </span>
+            </div>
+            <!--end::Input wrapper-->
+            <!--begin::Meter-->
+            <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight"></div>
+            <!--end::Meter-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+
+    <!--end::Input group=-->
+    <!--begin::Wrapper-->
+    <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+        <div></div>
+        <!--begin::Link-->
+        <a href="{% url 'account_reset_password' %}" class="link-primary">{% trans "Forgot Password?" %}</a>
+        <!--end::Link-->
+    </div>
+    <!--end::Wrapper-->
+    <!--begin::Submit button-->
+    <div class="d-grid mb-10">
+        {% if redirect_field_value %}
+            <input type="hidden" id="login_redirect_url" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+            <!--begin::Indicator label-->
+            <span class="indicator-label">{% trans "Sign In" %}</span>
+            <!--end::Indicator label-->
+            <!--begin::Indicator progress-->
+            <span class="indicator-progress">{% trans "Please wait" %}...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            <!--end::Indicator progress-->
+        </button>
+    </div>
+    <!--end::Submit button-->
+    <!--begin::Sign up-->
+    <div class="text-gray-500 text-center fw-semibold fs-6">{% trans "Not a Member yet?" %}
+    <a href="{% url 'account_signup' %}" class="link-primary">{% trans "Sign up" %}</a></div>
+    <!--end::Sign up-->
+</form>
+
+{% addtoblock "page_css" %}
+    {{ form.media.css }}
+{% endaddtoblock %}
+
+{% addtoblock "page_js" %}
+    {{ form.media.js }}
+    {% comment %}<script type="text/javascript" src="{% static 'accounting/assets/js/login.js' %}"></script>{% endcomment %}
+{% endaddtoblock %}
+
+{% endblock %}

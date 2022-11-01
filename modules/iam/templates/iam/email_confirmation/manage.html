@@ -1,0 +1,15 @@
+{% extends 'tables.html' %}
+{% load i18n widget_tweaks static django_tables2 %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block table_buttons %}
+    <a href="{% url "emails_confirmations_new" %}" class="btn btn-sm btn-primary">{% trans "Add new" %}</a>
+{% endblock %}
+
+
+{% block table_actions %}
+    <div class="menu-item px-3">
+        <a href="{% url 'emails_confirmations_delete_bulk' %}" class="menu-link px-3 apply-bulk-action">{% trans "Delete Selected" %}</a>
+    </div>
+{% endblock %}

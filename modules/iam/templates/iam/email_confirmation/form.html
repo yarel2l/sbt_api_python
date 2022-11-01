@@ -1,0 +1,24 @@
+{% extends 'forms.html' %}
+{% load i18n sekizai_tags %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block form_body %}
+    {% include 'form_snippets/form_fields.html' with form=form %}
+
+    {% addtoblock page_js %}
+    {% comment %}<script type="application/javascript">
+        $("#ajax_generate_key").click(function() {
+            $.ajax({
+                url: '{% url "tokens_generate" %}',
+                datatype: 'json',
+                type: 'GET',
+                success: function(data) {
+                    $("#id_key").val(data.apikey);
+                }
+            });
+        });
+    </script>{% endcomment %}
+    {% endaddtoblock %}
+{% endblock %}

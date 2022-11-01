@@ -1,0 +1,38 @@
+{% load i18n %}
+{% load gravatar %}
+
+{% if user %}
+<div class="d-flex align-items-center flex-grow-1">
+
+    <div class="me-5 position-relative">
+        <!--begin::Avatar-->
+        {% if user.avatar %}
+            <div class="symbol symbol-45px">
+                <img alt="{% trans 'Avatar' %}" src="{{ user.avatar.url }}">
+            </div>
+        {% else %}
+            <div class="symbol symbol-45px">
+                {% if user.email %}
+                    {% gravatar user.email 45 %}
+                {% else %}
+                    {% gravatar user.first_name 45 %}
+                {% endif %}
+            </div>
+        {% endif %}
+        <!--end::Avatar-->
+        <!--begin::Online-->
+        {% if user.is_online %}
+            <div class="bg-success position-absolute h-8px w-8px rounded-circle translate-middle start-100 top-100 ms-n1 mt-n1"></div>
+        {% else %}
+            <div class="bg-danger position-absolute h-8px w-8px rounded-circle translate-middle start-100 top-100 ms-n1 mt-n1"></div>
+        {% endif %}
+        <!--end::Online-->
+    </div>
+    <!--begin::Info-->
+    <div class="d-flex flex-column">
+        <a href="{{ user.get_absolute_url }}" class="text-gray-900 text-hover-primary fs-6 fw-bolder">{{ user }}</a>
+        <span class="text-gray-400 fw-bold">{{ user.show_email }}</span>
+    </div>
+    <!--end::Info-->
+</div>
+{% endif %}

@@ -1,0 +1,17 @@
+{% load i18n static %}
+
+<a href="/" class="">
+{% if tenant_website_config.image %}
+    <img alt="{% trans 'Logo' %}" src="{{ tenant_website_config.image.url }}" class="h-125px mobile-hidden d-sm-none d-lg-block" />
+{% else %}
+    <img alt="{% trans 'Logo' %}" src="{% static "backend/assets/images/logos/1.svg" %}" class="h-250px mobile-hidden d-sm-none d-lg-block" />
+{% endif %}
+</a>
+
+{% comment %}<a href="/" class="py-20 d-sm-none d-lg-block mobile-hidden">
+    <img alt="{% trans 'Logo' %}" src="{% static "metronic/assets/images/logos/base/Logo_auth.png" %}" class="h-30px" />
+</a>{% endcomment %}
+
+<a href="/" class="d-lg-none">
+    <img alt="{% trans 'Logo' %}" src="{% static "backend/assets/images/logos/1.svg" %}" class="h-80px align-items-center" />
+</a>

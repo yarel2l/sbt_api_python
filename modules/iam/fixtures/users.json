@@ -1,0 +1,56 @@
+[
+{
+    "model": "accounting.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$wTAicd0Hxpey0m8cOizoIt$X9HnKZ8sgtEBsDaZfGJilL9gO/HpCNO1s7M/1LV/viY=",
+        "last_login": "2022-01-25T19:08:22.374Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Admin",
+        "last_name": "HPS",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-01-21T22:44:23.638Z",
+        "is_guest": false,
+        "uid": "9acba87e-88df-4588-a4f7-704354ccf2ab",
+        "middlename": null,
+        "email": "admin@email.com",
+        "phone_number": "+18099648251",
+        "dob": "1985-12-29",
+        "created_by": null,
+        "groups": [],
+        "user_permissions": [],
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "accounting.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$RIZBWHNH3lZ73BHqTnJApQ$KhVPS7Y5wIEy/g49VVUaeDJIRTFnY6G+Ye8ySaXHxmc=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "yarel",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-01-27T01:00:56.184Z",
+        "is_guest": false,
+        "uid": "4522f6ff-9be2-4f81-82b4-2074d3175cc5",
+        "middlename": null,
+        "email": "yarel@email.com",
+        "phone_number": null,
+        "dob": null,
+        "created_by": null,
+        "groups": [],
+        "user_permissions": [],
+        "sites": [
+            1
+        ]
+    }
+}
+]

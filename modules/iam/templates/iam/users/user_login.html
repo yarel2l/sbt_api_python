@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="card card-flush py-4">
+    <div class="card-header">
+        <div class="card-title">
+            <h2>{% trans "Account Login" %}</h2>
+        </div>
+    </div>
+    <div class="card-body pt-0">
+        {% include "form_snippets/input_fields.html" with field=form.tenant %}
+        {% include "form_snippets/input_fields.html" with field=form.email %}
+        {% include "form_snippets/input_fields.html" with field=form.send_email %}
+    </div>
+</div>

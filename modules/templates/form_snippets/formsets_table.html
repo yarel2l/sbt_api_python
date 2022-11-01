@@ -1,0 +1,40 @@
+{% load i18n sekizai_tags %}
+
+
+<table class="table table-responsive" draggable="true">
+    {{ formset.management_form }}
+    {% for form in formset.forms %}
+        {% if forloop.first %}
+            <thead>
+                <tr class="fw-bolder text-muted">
+                    {% for field in form.visible_fields %}
+                        <th>
+                            {{ field.label|upper }}
+                            {% if not hide_help and field.help_text %}
+                                <i class="fas fa-exclamation-circle ms-1 fs-3" data-bs-toggle="tooltip" data-bs-toggle="tooltip" title="" data-bs-original-title="{{field.help_text|safe}}" aria-label="{{field.help_text|safe}}"></i>
+                            {% endif %}
+                        </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+        {% endif %}
+
+        <tr class="{{ formset.prefix }}">
+
+            {% for field in form.visible_fields %}
+                <td>
+                    {# Include the hidden fields in the form #}
+                    {% if forloop.first %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ field.errors.as_ul }}
+                    {% include 'form_snippets/formset_input_fields_no_labels.html' with field=field %}
+                </td>
+            {% endfor %}
+
+        </tr>
+
+    {% endfor %}
+</table>

@@ -1,0 +1,9 @@
+{% extends 'forms.html' %}
+{% load i18n widget_tweaks %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block form_body %}
+    {% include 'form_snippets/form_fields.html' with form=form %}
+{% endblock %}

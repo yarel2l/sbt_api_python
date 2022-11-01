@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<div class="card card-flush py-4">
+    <div class="card-header">
+        <div class="card-title">
+            <h2>{{ application.name }}</h2>
+        </div>
+    </div>
+    <div class="card-body pt-0">
+        <p>{% trans "Client ID" %}:</p>
+        <input type="text" class="form-control" readonly value="{{ application.client_id }}"/>
+        <p>{% trans "Client Secret" %}:</p>
+        <textarea class="input-block-level form-control" readonly>{{ application.client_secret }}</textarea>
+    </div>
+</div>

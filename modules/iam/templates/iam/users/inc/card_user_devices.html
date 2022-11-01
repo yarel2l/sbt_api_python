@@ -1,0 +1,18 @@
+{% load i18n django_tables2 widget_tweaks %}
+
+<div class="card">
+    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_deactivate" aria-expanded="true" aria-controls="kt_account_deactivate">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">{% trans "Devices Connected" %}</h3>
+        </div>
+    </div>
+        <div class="card-body border-top p-9">
+            {% if table.paginator.count > 0 %}
+                {% render_table table %}
+            {% else %}
+                <h3 class="d-flex flex-center text-center text-muted min-h-200px">
+                    {% blocktrans %} No devices connected.{% endblocktrans %}
+                </h3>
+            {% endif %}
+        </div>
+</div>

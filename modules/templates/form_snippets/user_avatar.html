@@ -1,0 +1,12 @@
+{% load i18n %}
+{% load gravatar %}
+
+{% if user %}
+    {% if user.avatar %}
+        <div class="symbol symbol-50px symbol-circle me-5">
+            <img alt="{% trans 'Avatar' %}" src="{{ user.avatar.url }}">
+        </div>
+    {% else %}
+        {% gravatar user.email 50 %}
+    {% endif %}
+{% endif %}

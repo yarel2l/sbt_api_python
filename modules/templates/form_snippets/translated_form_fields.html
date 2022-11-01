@@ -1,0 +1,27 @@
+{% load i18n core_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+<ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+    {% for lang in LANGUAGES %}
+    <li class="nav-item">
+        <a class="nav-link {% if lang.0 == LANGUAGE_CODE %}active{% endif %}" data-bs-toggle="tab" href="#{{ formset.prefix }}{{ cycle }}_trans_lang_{{ lang.0 }}" role="tab" aria-selected="true">
+           {{ lang.1 }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="tab-content" id="{{ formset.prefix }}-{{ cycle }}_transTabContent">
+{% for lang in LANGUAGES %}
+    <div class="tab-pane fade {% if lang.0 == LANGUAGE_CODE %}show active{% endif %}" id="{{ formset.prefix }}{{ cycle }}_trans_lang_{{ lang.0 }}" role="tabpanel">
+        {% with "_"|add:lang.0 as l %}
+        {% for field in form %}
+            {% if field.name|endswith == l %}
+                {% include 'form_snippets/input_fields.html' with field=field %}
+            {% endif %}
+        {% endfor %}
+        {% endwith %}
+    </div>
+{% endfor %}
+</div>

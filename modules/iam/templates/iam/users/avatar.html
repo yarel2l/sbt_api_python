@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load gravatar %}
+
+{% if user %}
+    <div class="symbol symbol-50px me-5">
+        <img alt="{% trans 'Avatar' %}" src="{{ user.avatar_url }}">
+    </div>
+{% endif %}

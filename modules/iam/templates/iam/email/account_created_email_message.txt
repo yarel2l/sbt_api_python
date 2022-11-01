@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+
+{{ invitation_to }}, Welcome to {{ site_name }}.
+
+You're receiving this e-mail because an User Account was registered using current Email from {{ site_name }}.
+
+Click the link below to login using your account.
+
+{{ login_url }}
+
+Thank you for using {{ site_name }}!
+
+Our Team.
+{% endblocktrans %}

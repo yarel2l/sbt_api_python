@@ -1,0 +1,232 @@
+{% load i18n tz %}
+{% load chat_tags %}
+
+<!--begin::Contacts-->
+<div class="card card-flush" id="kt_contacts_main">
+    <!--begin::Card header-->
+    <div class="card-header pt-7" id="kt_chat_contacts_header">
+        <!--begin::Card title-->
+        <div class="card-title">
+            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+            <span class="svg-icon svg-icon-1 me-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor" />
+                    <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+            <h2>{% trans "Details" %}</h2>
+        </div>
+        <!--end::Card title-->
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar gap-3">
+            <!--begin::Chat-->
+            {% if user_contact %}
+                {% show_button_chat user_contact %}
+            {% endif %}
+            <!--end::Chat-->
+            {% comment %}<!--begin::Chat-->
+            <a href="#" class="btn btn-sm btn-light btn-active-light-primary">
+            <!--begin::Svg Icon | path: icons/duotune/communication/com007.svg-->
+            <span class="svg-icon svg-icon-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path opacity="0.3" d="M8 8C8 7.4 8.4 7 9 7H16V3C16 2.4 15.6 2 15 2H3C2.4 2 2 2.4 2 3V13C2 13.6 2.4 14 3 14H5V16.1C5 16.8 5.79999 17.1 6.29999 16.6L8 14.9V8Z" fill="currentColor" />
+                    <path d="M22 8V18C22 18.6 21.6 19 21 19H19V21.1C19 21.8 18.2 22.1 17.7 21.6L15 18.9H9C8.4 18.9 8 18.5 8 17.9V7.90002C8 7.30002 8.4 6.90002 9 6.90002H21C21.6 7.00002 22 7.4 22 8ZM19 11C19 10.4 18.6 10 18 10H12C11.4 10 11 10.4 11 11C11 11.6 11.4 12 12 12H18C18.6 12 19 11.6 19 11ZM17 15C17 14.4 16.6 14 16 14H12C11.4 14 11 14.4 11 15C11 15.6 11.4 16 12 16H16C16.6 16 17 15.6 17 15Z" fill="currentColor" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->{% trans "Message" %}
+            </a>
+            <!--end::Chat-->{% endcomment %}
+            <!--begin::Action menu-->
+            {% comment %}<a href="#" class="btn btn-sm btn-icon btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                <!--begin::Svg Icon | path: icons/duotune/general/gen052.svg-->
+                <span class="svg-icon svg-icon-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                        <rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                        <rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
+            </a>
+            <!--begin::Menu-->
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                <!--begin::Menu item-->
+                <div class="menu-item px-3">
+                    <a href="{{ user_contact.get_edit_url }}" class="menu-link px-3">{% trans "Edit" %}</a>
+                </div>
+                <!--end::Menu item-->
+                <!--begin::Menu item-->
+                <div class="menu-item px-3">
+                    <a href="{{ user_contact.get_delete_url }}" class="menu-link px-3 delete-button" data-id="{{record.pk}}" data-method="DELETE">{% trans "Delete" %}</a>
+                </div>
+                <!--end::Menu item-->
+            </div>{% endcomment %}
+            <!--end::Menu-->
+            <!--end::Action menu-->
+        </div>
+        <!--end::Card toolbar-->
+    </div>
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body pt-5">
+        <!--begin::Profile-->
+        <div class="d-flex gap-7 align-items-center">
+            <!--begin::Avatar-->
+            {% include "form_snippets/user_avatar_lg.html" with user=user_contact %}
+            {% comment %}<div class="symbol symbol-circle symbol-100px">{% endcomment %}
+            {% comment %}{% if contact.user %}
+
+            {% else %}
+                <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                    <div class="symbol-label fs-3x fw-bold text-danger">{{ contact.user.initials_name|upper }}</div>
+                </div>
+            {% endif %}{% endcomment %}
+            {% comment %}</div>{% endcomment %}
+            <!--end::Avatar-->
+            <!--begin::Contact details-->
+            <div class="d-flex flex-column gap-2">
+                <!--begin::Name-->
+                <h3 class="mb-0">{{ user_contact }}</h3>
+                <!--end::Name-->
+                <!--begin::Email-->
+                <div class="d-flex align-items-center gap-2">
+                    <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
+                    <span class="svg-icon svg-icon-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="currentColor" />
+                            <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                    <a href="javascript:;" class="text-muted text-hover-primary">{{ user_contact.show_email }}</a>
+                </div>
+                <!--end::Email-->
+                <!--begin::Phone-->
+                <div class="d-flex align-items-center gap-2">
+                    <!--begin::Svg Icon | path: icons/duotune/electronics/elc003.svg-->
+                    <span class="svg-icon svg-icon-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 20H19V21C19 21.6 18.6 22 18 22H6C5.4 22 5 21.6 5 21V20ZM19 3C19 2.4 18.6 2 18 2H6C5.4 2 5 2.4 5 3V4H19V3Z" fill="currentColor" />
+                            <path opacity="0.3" d="M19 4H5V20H19V4Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                    <a href="javascript:;" class="text-muted text-hover-primary">{{ user_contact.show_phone }}</a>
+                </div>
+                <!--end::Phone-->
+            </div>
+            <!--end::Contact details-->
+        </div>
+        <!--end::Profile-->
+        {% comment %}<!--begin:::Tabs-->
+        <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 fw-bold mt-6 mb-8">
+            <!--begin:::Tab item-->
+            <li class="nav-item">
+                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_contact_view_general">
+                <!--begin::Svg Icon | path: icons/duotune/general/gen001.svg-->
+                <span class="svg-icon svg-icon-2x me-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
+                        <rect x="11" y="17" width="7" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"/>
+                        <rect x="11" y="9" width="2" height="2" rx="1" transform="rotate(-90 11 9)" fill="currentColor"/>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->{% trans "General" %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_contact_address">
+                <!--begin::Svg Icon | path: icons/duotune/general/gen001.svg-->
+                <span class="svg-icon svg-icon-2x me-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path opacity="0.3" d="M18.0624 15.3454L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3454C4.56242 13.6454 3.76242 11.4452 4.06242 8.94525C4.56242 5.34525 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24525 19.9624 9.94525C20.0624 12.0452 19.2624 13.9454 18.0624 15.3454ZM13.0624 10.0453C13.0624 9.44534 12.6624 9.04534 12.0624 9.04534C11.4624 9.04534 11.0624 9.44534 11.0624 10.0453V13.0453H13.0624V10.0453Z" fill="currentColor"/>
+                        <path d="M12.6624 5.54531C12.2624 5.24531 11.7624 5.24531 11.4624 5.54531L8.06241 8.04531V12.0453C8.06241 12.6453 8.46241 13.0453 9.06241 13.0453H11.0624V10.0453C11.0624 9.44531 11.4624 9.04531 12.0624 9.04531C12.6624 9.04531 13.0624 9.44531 13.0624 10.0453V13.0453H15.0624C15.6624 13.0453 16.0624 12.6453 16.0624 12.0453V8.04531L12.6624 5.54531Z" fill="currentColor"/>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->{% trans "Address" %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_contact_qr_code">
+                <!--begin::Svg Icon | path: icons/duotune/general/gen001.svg-->
+                <span class="svg-icon svg-icon-2x me-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path opacity="0.3" d="M3 6C2.4 6 2 5.6 2 5V3C2 2.4 2.4 2 3 2H5C5.6 2 6 2.4 6 3C6 3.6 5.6 4 5 4H4V5C4 5.6 3.6 6 3 6ZM22 5V3C22 2.4 21.6 2 21 2H19C18.4 2 18 2.4 18 3C18 3.6 18.4 4 19 4H20V5C20 5.6 20.4 6 21 6C21.6 6 22 5.6 22 5ZM6 21C6 20.4 5.6 20 5 20H4V19C4 18.4 3.6 18 3 18C2.4 18 2 18.4 2 19V21C2 21.6 2.4 22 3 22H5C5.6 22 6 21.6 6 21ZM22 21V19C22 18.4 21.6 18 21 18C20.4 18 20 18.4 20 19V20H19C18.4 20 18 20.4 18 21C18 21.6 18.4 22 19 22H21C21.6 22 22 21.6 22 21ZM16 11V9C16 6.8 14.2 5 12 5C9.8 5 8 6.8 8 9V11C7.2 11 6.5 11.7 6.5 12.5C6.5 13.3 7.2 14 8 14V15C8 17.2 9.8 19 12 19C14.2 19 16 17.2 16 15V14C16.8 14 17.5 13.3 17.5 12.5C17.5 11.7 16.8 11 16 11ZM13.4 15C13.7 15 14 15.3 13.9 15.6C13.6 16.4 12.9 17 12 17C11.1 17 10.4 16.5 10.1 15.7C10 15.4 10.2 15 10.6 15H13.4Z" fill="currentColor"/>
+                        <path d="M9.2 12.9C9.1 12.8 9.10001 12.7 9.10001 12.6C9.00001 12.2 9.3 11.7 9.7 11.6C10.1 11.5 10.6 11.8 10.7 12.2C10.7 12.3 10.7 12.4 10.7 12.5L9.2 12.9ZM14.8 12.9C14.9 12.8 14.9 12.7 14.9 12.6C15 12.2 14.7 11.7 14.3 11.6C13.9 11.5 13.4 11.8 13.3 12.2C13.3 12.3 13.3 12.4 13.3 12.5L14.8 12.9ZM16 7.29998C16.3 6.99998 16.5 6.69998 16.7 6.29998C16.3 6.29998 15.8 6.30001 15.4 6.20001C15 6.10001 14.7 5.90001 14.4 5.70001C13.8 5.20001 13 5.00002 12.2 4.90002C9.9 4.80002 8.10001 6.79997 8.10001 9.09997V11.4C8.90001 10.7 9.40001 9.8 9.60001 9C11 9.1 13.4 8.69998 14.5 8.29998C14.7 9.39998 15.3 10.5 16.1 11.4V9C16.1 8.5 16 8 15.8 7.5C15.8 7.5 15.9 7.39998 16 7.29998Z" fill="currentColor"/>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->{% trans "QR Code" %}</a>
+            </li>
+            <!--end:::Tab item-->
+        </ul>
+        <!--end:::Tabs-->
+        <!--begin::Tab content-->
+        <div class="tab-content" id="">
+            <!--begin:::Tab pane-->
+            <div class="tab-pane fade show active" id="kt_contact_view_general" role="tabpanel">
+                <!--begin::Additional details-->
+                <div class="d-flex flex-column gap-5 mt-7">
+                    <!--begin::Company name-->
+                    <div class="d-flex flex-column gap-1">
+                        <div class="fw-bolder text-muted">{% trans "Relationship" %}</div>
+                        <div class="fw-bolder fs-5">{% if contact.relationship %}{{ contact.relationship }}{% else %}{% trans "Unknown" %}{% endif %}</div>
+                    </div>
+                    <!--end::Company name-->
+                    <!--begin::Notes-->
+                    <div class="d-flex flex-column gap-1">
+                        <div class="fw-bolder text-muted">{% trans "Emergency Contact" %}</div>
+                        <div class="fw-bolder fs-5">
+                            {% if contact.emergency_contact %}
+                                <span class="badge badge-success">{% trans "Active" %}</span>
+                            {% else %}
+                                <span class="badge badge-danger">{% trans "Disabled" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--end::Notes-->
+                </div>
+                <!--end::Additional details-->
+            </div>
+            <!--end:::Tab pane-->
+            <!--begin:::Tab pane-->
+            <div class="tab-pane fade" id="kt_contact_address" role="tabpanel">
+                <!--begin::Additional details-->
+                <div class="d-flex flex-column gap-5 mt-7">
+
+                    <!--begin::City-->
+                    <div class="d-flex flex-column gap-1">
+                        <div class="fw-bolder text-muted">{% trans "Address" %}</div>
+                        <div class="fw-bolder fs-5">{% if contact.address %}{{ contact.address.formatted }}{% else %}{% trans 'Unknown' %}{% endif %}</div>
+                    </div>
+                    <!--end::City-->
+                    <!--begin::Country-->
+                    <div class="d-flex flex-column gap-1">
+                        <div class="fw-bolder text-muted">{% trans "Country" %}</div>
+                        <div class="fw-bolder fs-5">{% if contact.address %}{{ contact.address.locality.state.country.name }}{% else %}{% trans 'Unknown' %}{% endif %}</div>
+                    </div>
+                    <!--end::Country-->
+                </div>
+                <!--end::Additional details-->
+            </div>
+            <!--end:::Tab pane-->
+            <!--begin:::Tab pane-->
+            <div class="tab-pane fade" id="kt_contact_qr_code" role="tabpanel">
+                <!--begin::Additional details-->
+                <div class="d-flex flex-column gap-5 mt-7">
+                    <!--begin::Company name-->
+                    <div class="d-flex flex-column gap-1">
+                        <div class="fw-bolder text-muted">{% trans "Please, use a QR code reader so you can scan this code correctly" %}</div>
+                        <div class="fw-bolder fs-5">
+                            {% qr_for_vcard vcard=vcard_contact size="T" %}
+                        </div>
+                    </div>
+                    <!--end::Company name-->
+                </div>
+                <!--end::Additional details-->
+            </div>
+            <!--end:::Tab pane-->
+        </div>
+        <!--end::Tab content-->{% endcomment %}
+    </div>
+    <!--end::Card body-->
+</div>
+<!--end::Contacts-->

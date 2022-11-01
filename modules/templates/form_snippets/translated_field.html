@@ -1,0 +1,8 @@
+{% load i18n core_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% with "_"|add:lang.0 as l %}
+    {% if field.name|endswith == l %}
+        {% include 'form_snippets/input_fields.html' with field=field %}
+    {% endif %}
+{% endwith %}

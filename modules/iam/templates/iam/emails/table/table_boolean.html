@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% if record.confirmed %}
+    <span class="btn btn-label-success btn-sm">{% trans 'Confirmed' %}</span>
+{% else %}
+    <span class="btn btn-label-danger btn-sm">{% trans 'Pending' %}</span>
+{% endif %}

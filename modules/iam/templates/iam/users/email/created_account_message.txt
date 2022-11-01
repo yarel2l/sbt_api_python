@@ -1,0 +1,25 @@
+{% load i18n %}
+{% blocktrans with site_name=site_name site_domain=domain pwd=password %}
+
+Hi, {{ fullname }}.
+
+Welcome to, {{ site_name }}!
+
+If you are receiving this message it is because your email has been used to register a user account in our system.
+If it wasn't you, you don't need to take any action.
+
+Please, check your User Account bellow:
+
+Email: {{ email }}
+Password: {{ pwd }}
+
+
+To login please follow this link: {{ login_url }}.
+
+{% endblocktrans %}
+{% blocktrans with site_name=site_name site_domain=domain %}
+
+Thank you from our Team in {{ site_name }}!
+
+{{ site_domain }}
+{% endblocktrans %}

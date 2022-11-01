@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n sekizai_tags %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+    {% include "iam/users/user_info_card.html" with user=user %}
+
+    {% include "iam/users/inc/form_information.html" with form=form %}
+
+
+{% addtoblock "page_css" %}
+    {{ form.media.css }}
+{% endaddtoblock %}
+
+{% addtoblock "page_js" %}
+    {{ form.media.js }}
+{% endaddtoblock %}
+
+{% endblock %}

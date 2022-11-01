@@ -1,0 +1,74 @@
+---
+project_name: "sbt_python_api"
+
+base_path: "/var/www/{{ project_name }}"
+
+app_path: "{{ base_path }}/source"
+
+app_modules: "{{ app_path }}/modules"
+
+venv_path: "{{ base_path }}/venv"
+
+socket_path: "{{ app_modules }}/config/{{ project_name }}.sock"
+
+app_gateway: "config.asgi"
+
+requirements_path: "requirements/prod.txt"
+
+git_url: "https://yarel2l:{{ github_token }}@github.com/yarel2l/scorbot-api-python.git"
+
+repo_branch: "staging"
+
+app_environment: "prod"
+
+github_token: "{{ vault_github_token }}"
+
+admin_user: "{{ vault_admin_user }}"
+
+admin_email: "{{ vault_admin_email }}"
+
+admin_password: "{{ vault_admin_password }}"
+
+domain: "{{ vault_domain }}"
+
+secret_key: "{{ vault_secret_key }}"
+
+postgres_db: "{{ vault_postgres_db }}"
+
+postgres_user: "postgres"
+
+postgres_password: "{{ vault_postgres_password }}"
+
+postgres_host: "{{ vault_postgres_host }}"
+
+postgres_port: "{{ vault_postgres_port }}"
+
+scorbot_db_name: "{{ vault_scorbot_db_name }}"
+
+scorbot_db_user: "{{ vault_scorbot_db_user }}"
+
+scorbot_db_password: "{{ vault_scorbot_db_password }}"
+
+scorbot_db_host: "{{ vault_scorbot_db_host }}"
+
+scorbot_db_port: "{{ vault_scorbot_db_port }}"
+
+redis_host: "{{ vault_redis_host }}"
+
+redis_port: "{{ vault_redis_port }}"
+
+sendgrid_api_key: "{{ vault_sendgrid_api_key }}"
+
+anymail_default_from_email: "{{ vault_anymail_default_from_email }}"
+
+account_email_subject_prefix: "{{ vault_account_email_subject_prefix }}"
+
+
+
+
+
+
+
+
+
+

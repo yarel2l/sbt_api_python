@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% if record.is_active %}
+    <span class="badge badge-success mr-2">{% trans 'Active' %}</span>
+{% else %}
+    <span class="badge badge-danger mr-2">{% trans 'Inactive' %}</span>
+{% endif %}

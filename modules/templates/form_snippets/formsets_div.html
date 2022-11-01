@@ -1,0 +1,15 @@
+<table class="table table-responsive" draggable="true">
+    {{ formset.management_form }}
+    {% for form in formset.forms %}
+        <tr class="{{ formset.prefix }}">
+            <td class="mb-10">
+                {% for field in form.visible_fields %}
+                    {% include 'form_snippets/formset_input_fields.html' with field=field %}
+                {% endfor %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,17 @@
+.DS_Store
+venv/*
+*.pyc
+staticfiles
+.env
+.idea/
+media/*
+!media/uploads/*
+.vscode/
+celerybeat-schedule*
+*.log
+*.log.*
+*.lock
+env/*
+modules/static/CACHE/*
+modules/static/node_modules/*
+*.sqlite3

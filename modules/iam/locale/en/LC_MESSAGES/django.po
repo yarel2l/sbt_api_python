@@ -1,0 +1,869 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-28 23:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounting/api/bearer_auth.py:22
+msgid "Invalid token header. No credentials provided."
+msgstr ""
+
+#: accounting/api/bearer_auth.py:25
+msgid "Invalid token header. Token string should not contain spaces."
+msgstr ""
+
+#: accounting/api/bearer_auth.py:30
+msgid ""
+"Invalid token header. Token string should not contain invalid characters."
+msgstr ""
+
+#: accounting/api/serializers.py:117
+msgid "A user is already registered with this email address."
+msgstr ""
+
+#: accounting/api/serializers.py:125
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: accounting/api/serializers.py:185
+msgid "Must include \"email\" and \"password\"."
+msgstr ""
+
+#: accounting/api/serializers.py:196
+msgid "Must include \"username\" and \"password\"."
+msgstr ""
+
+#: accounting/api/serializers.py:209
+msgid "Must include either \"username\" or \"email\" and \"password\"."
+msgstr ""
+
+#: accounting/api/serializers.py:251
+msgid "User account is disabled."
+msgstr ""
+
+#: accounting/api/serializers.py:254 accounting/api/views.py:260
+msgid "Unable to log in with provided credentials."
+msgstr ""
+
+#: accounting/api/serializers.py:264 accounting/api/serializers.py:272
+msgid "Email is not verified."
+msgstr ""
+
+#: accounting/api/views.py:96 accounting/views.py:53
+msgid "Invalid Phone or confirmation Code"
+msgstr ""
+
+#: accounting/api/views.py:102
+msgid ""
+"Invalid request. This phone number has already been previously verified!"
+msgstr ""
+
+#: accounting/api/views.py:114
+#, python-brace-format
+msgid "Welcome to {request.solution.name}. "
+msgstr ""
+
+#: accounting/api/views.py:226
+msgid "Error registering Device"
+msgstr ""
+
+#: accounting/api/views.py:316 accounting/api/views.py:346
+msgid "User is not anonymous"
+msgstr ""
+
+#: accounting/api/views.py:331
+msgid "Email or phone_number already in use"
+msgstr ""
+
+#: accounting/api/views.py:362
+msgid "Email confirmed successfully"
+msgstr ""
+
+#: accounting/filters.py:21 accounting/filters.py:72 accounting/filters.py:99
+#: accounting/filters.py:112 accounting/filters.py:126
+#: accounting/filters.py:139 accounting/filters.py:150
+#: accounting/filters.py:166 accounting/filters.py:196
+msgid "Search"
+msgstr ""
+
+#: accounting/filters.py:48
+msgid "Account Active"
+msgstr ""
+
+#: accounting/filters.py:50
+msgid "Registration Date"
+msgstr ""
+
+#: accounting/filters.py:66
+#: accounting/templates/accounting/emails/table/table_boolean.html:6
+#: accounting/templates/accounting/social/accounts/table/table_boolean.html:6
+#: accounting/templates/accounting/social/apps/table/table_boolean.html:6
+#: accounting/templates/accounting/social/tokens/table/table_boolean.html:6
+#: accounting/templates/accounting/tokens/table/table_boolean.html:6
+#: accounting/templates/accounting/twilio/table/table_boolean.html:6
+msgid "Pending"
+msgstr ""
+
+#: accounting/filters.py:67
+#: accounting/templates/accounting/emails/table/table_boolean.html:4
+#: accounting/templates/accounting/social/accounts/table/table_boolean.html:4
+#: accounting/templates/accounting/social/apps/table/table_boolean.html:4
+#: accounting/templates/accounting/social/tokens/table/table_boolean.html:4
+#: accounting/templates/accounting/tokens/table/table_boolean.html:4
+#: accounting/templates/accounting/twilio/table/table_boolean.html:4
+msgid "Confirmed"
+msgstr ""
+
+#: accounting/filters.py:86 accounting/tables.py:42
+msgid "Status"
+msgstr ""
+
+#: accounting/filters.py:113
+msgid "Verified"
+msgstr ""
+
+#: accounting/filters.py:114
+msgid "Primary"
+msgstr ""
+
+#: accounting/filters.py:127
+msgid "Sent Date"
+msgstr ""
+
+#: accounting/filters.py:128
+msgid "Created Date"
+msgstr ""
+
+#: accounting/filters.py:151
+msgid "Date Joined"
+msgstr ""
+
+#: accounting/filters.py:152
+msgid "Last Login"
+msgstr ""
+
+#: accounting/filters.py:180
+msgid "Expiration Date"
+msgstr ""
+
+#: accounting/forms.py:35 accounting/forms.py:82
+msgid "First Name"
+msgstr ""
+
+#: accounting/forms.py:36 accounting/forms.py:84
+msgid "Last Name"
+msgstr ""
+
+#: accounting/forms.py:37 accounting/forms.py:85
+#: accounting/templates/accounting/users/sidebar_menu.html:24
+msgid "Email"
+msgstr ""
+
+#: accounting/forms.py:39 accounting/forms.py:87
+#: accounting/templates/accounting/users/sidebar_menu.html:28
+msgid "Phone"
+msgstr ""
+
+#: accounting/forms.py:77
+msgid "A user is already registered with this phone number"
+msgstr ""
+
+#: accounting/forms.py:83 accounting/models.py:21
+msgid "Middle Name"
+msgstr ""
+
+#: accounting/forms.py:89 accounting/forms.py:114 accounting/models.py:27
+msgid "Sites"
+msgstr ""
+
+#: accounting/forms.py:116
+msgid "Mobile"
+msgstr ""
+
+#: accounting/forms.py:135
+msgid "Roles"
+msgstr ""
+
+#: accounting/forms.py:147 accounting/forms.py:347
+msgid "Permissions"
+msgstr ""
+
+#: accounting/forms.py:254
+msgid "Send Email Notification"
+msgstr ""
+
+#: accounting/forms.py:255
+msgid ""
+"Send a message to the selected email with the new link so that the owner can "
+"verify their data"
+msgstr ""
+
+#: accounting/models.py:19
+msgid "UID"
+msgstr ""
+
+#: accounting/models.py:22
+msgid "email address"
+msgstr ""
+
+#: accounting/models.py:24
+msgid "Phone Number"
+msgstr ""
+
+#: accounting/models.py:26
+msgid "Phone Country Code"
+msgstr ""
+
+#: accounting/models.py:29
+msgid "Created By"
+msgstr ""
+
+#: accounting/models.py:160
+msgid "Twilio Phone Code"
+msgstr ""
+
+#: accounting/models.py:161
+msgid "Twilio Phone Codes"
+msgstr ""
+
+#: accounting/tables.py:19 accounting/tables.py:40
+msgid "User Account"
+msgstr ""
+
+#: accounting/tables.py:25
+msgid "Account Status"
+msgstr ""
+
+#: accounting/tables.py:30 accounting/tables.py:48 accounting/tables.py:61
+#: accounting/tables.py:74 accounting/tables.py:88 accounting/tables.py:100
+#: accounting/tables.py:113 accounting/tables.py:129 accounting/tables.py:145
+msgid "Actions"
+msgstr ""
+
+#: accounting/tables.py:86
+msgid "Email address"
+msgstr ""
+
+#: accounting/tables.py:111
+msgid "User"
+msgstr ""
+
+#: accounting/tables.py:125
+msgid "Social App"
+msgstr ""
+
+#: accounting/tables.py:127
+msgid "Social Account"
+msgstr ""
+
+#: accounting/tables.py:141
+msgid "Users"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:7
+#: accounting/templates/accounting/permissions/tabular_permissions.html:6
+msgid "application"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:8
+#: accounting/templates/accounting/permissions/tabular_permissions.html:7
+msgid "model"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:11
+#: accounting/templates/accounting/permissions/tabular_permissions.html:13
+msgid "View"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:15
+#: accounting/templates/accounting/admin/tabular_permissions.html:24
+#: accounting/templates/accounting/admin/tabular_permissions.html:32
+#: accounting/templates/accounting/admin/tabular_permissions.html:40
+#: accounting/templates/accounting/admin/tabular_permissions.html:68
+msgid "All"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:20
+#: accounting/templates/accounting/permissions/tabular_permissions.html:22
+msgid "Add"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:28
+#: accounting/templates/accounting/permissions/tabular_permissions.html:30
+msgid "Change"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:36
+#: accounting/templates/accounting/email_confirmation/table/table_actions.html:10
+#: accounting/templates/accounting/emails/table/table_actions.html:8
+#: accounting/templates/accounting/groups/table/table_actions.html:8
+#: accounting/templates/accounting/permissions/tabular_permissions.html:38
+#: accounting/templates/accounting/social/accounts/table/table_actions.html:8
+#: accounting/templates/accounting/social/apps/table/table_actions.html:8
+#: accounting/templates/accounting/social/tokens/table/table_actions.html:8
+#: accounting/templates/accounting/tokens/table/table_actions.html:8
+#: accounting/templates/accounting/twilio/table/table_actions.html:8
+#: accounting/templates/accounting/users/table/table_actions.html:16
+msgid "Delete"
+msgstr ""
+
+#: accounting/templates/accounting/admin/tabular_permissions.html:45
+msgid "other permissions"
+msgstr ""
+
+#: accounting/templates/accounting/email/account_created_email_message.txt:3
+#, python-format
+msgid ""
+"\n"
+"\n"
+"%(invitation_to)s, Welcome to %(site_name)s.\n"
+"\n"
+"You're receiving this e-mail because an User Account was registered using "
+"current Email from %(site_name)s.\n"
+"\n"
+"Click the link below to login using your account.\n"
+"\n"
+"%(login_url)s\n"
+"\n"
+"Thank you for using %(site_name)s!\n"
+"\n"
+"Our Team.\n"
+msgstr ""
+
+#: accounting/templates/accounting/email/account_created_email_subject.txt:3
+#, python-format
+msgid "User Account invitation from %(site_name)s"
+msgstr ""
+
+#: accounting/templates/accounting/email_confirmation/manage.html:9
+#: accounting/templates/accounting/emails/manage.html:9
+#: accounting/templates/accounting/groups/manage.html:9
+#: accounting/templates/accounting/social/accounts/manage.html:7
+#: accounting/templates/accounting/social/apps/manage.html:7
+#: accounting/templates/accounting/social/tokens/manage.html:8
+#: accounting/templates/accounting/tokens/manage.html:8
+#: accounting/templates/accounting/twilio/manage.html:8
+#: accounting/templates/accounting/users/manage.html:8
+msgid "Add new"
+msgstr ""
+
+#: accounting/templates/accounting/email_confirmation/manage.html:17
+#: accounting/templates/accounting/emails/manage.html:17
+#: accounting/templates/accounting/groups/manage.html:18
+#: accounting/templates/accounting/social/accounts/manage.html:15
+#: accounting/templates/accounting/social/apps/manage.html:15
+#: accounting/templates/accounting/social/tokens/manage.html:15
+#: accounting/templates/accounting/twilio/manage.html:16
+#: accounting/templates/accounting/users/manage.html:15
+msgid "Delete Selected"
+msgstr ""
+
+#: accounting/templates/accounting/email_confirmation/table/table_actions.html:5
+#: accounting/templates/accounting/emails/table/table_actions.html:4
+#: accounting/templates/accounting/groups/table/table_actions.html:4
+#: accounting/templates/accounting/social/accounts/table/table_actions.html:4
+#: accounting/templates/accounting/social/apps/table/table_actions.html:4
+#: accounting/templates/accounting/social/tokens/table/table_actions.html:4
+#: accounting/templates/accounting/tokens/table/table_actions.html:4
+#: accounting/templates/accounting/twilio/table/table_actions.html:4
+msgid "Edit"
+msgstr ""
+
+#: accounting/templates/accounting/groups/form.html:9
+msgid "Group Info"
+msgstr ""
+
+#: accounting/templates/accounting/groups/form.html:14
+msgid "Auth Permissions"
+msgstr ""
+
+#: accounting/templates/accounting/groups/manage.html:11
+#: accounting/templates/accounting/social/apps/manage.html:8
+msgid "Load Fixtures"
+msgstr ""
+
+#: accounting/templates/accounting/groups/table/table_users.html:4
+msgid "View Users"
+msgstr ""
+
+#: accounting/templates/accounting/permissions/tabular_permissions.html:10
+#: accounting/templates/accounting/permissions/tabular_permissions.html:19
+#: accounting/templates/accounting/permissions/tabular_permissions.html:27
+#: accounting/templates/accounting/permissions/tabular_permissions.html:35
+#: accounting/templates/accounting/permissions/tabular_permissions.html:44
+msgid "Click to Select All"
+msgstr ""
+
+#: accounting/templates/accounting/permissions/tabular_permissions.html:47
+msgid "Others"
+msgstr ""
+
+#: accounting/templates/accounting/permissions/tabular_permissions.html:68
+msgid "Click to Select Model Permissions"
+msgstr ""
+
+#: accounting/templates/accounting/permissions/tabular_permissions.html:79
+#: accounting/templates/accounting/permissions/tabular_permissions.html:94
+#: accounting/templates/accounting/permissions/tabular_permissions.html:108
+#: accounting/templates/accounting/permissions/tabular_permissions.html:122
+#: accounting/templates/accounting/permissions/tabular_permissions.html:137
+msgid "Click to add "
+msgstr ""
+
+#: accounting/templates/accounting/tokens/form_snippets/token_input_group.html:9
+msgid "Generate"
+msgstr ""
+
+#: accounting/templates/accounting/users/account_information.html:20
+msgid "Personal Information"
+msgstr ""
+
+#: accounting/templates/accounting/users/account_information.html:21
+msgid "Update your personal information"
+msgstr ""
+
+#: accounting/templates/accounting/users/account_information.html:26
+#: accounting/templates/accounting/users/password.html:25
+#: accounting/templates/accounting/users/permissions.html:26
+msgid "Save Form"
+msgstr ""
+
+#: accounting/templates/accounting/users/email/account_registration_message.txt:2
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Hi, %(fullname)s.\n"
+"\n"
+"Welcome to, %(site_name)s!\n"
+"\n"
+"Check your User Account bellow:\n"
+"\n"
+"Email: %(email)s<br>\n"
+"Password: %(password)s<br><br>\n"
+"\n"
+"To login please follow this link: %(login_url)s.\n"
+"\n"
+msgstr ""
+
+#: accounting/templates/accounting/users/email/account_registration_message.txt:16
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Thank you from our Team in %(site_name)s!\n"
+"\n"
+"%(site_domain)s\n"
+msgstr ""
+
+#: accounting/templates/accounting/users/email/account_registration_subject.txt:3
+#, python-format
+msgid "User Account registered from %(site_name)s"
+msgstr ""
+
+#: accounting/templates/accounting/users/password.html:19
+#: accounting/templates/accounting/users/sidebar_menu.html:82
+#: accounting/templates/accounting/users/table/table_actions.html:8
+#: accounting/views.py:229
+msgid "Change Password"
+msgstr ""
+
+#: accounting/templates/accounting/users/password.html:20
+msgid "Change your account password"
+msgstr ""
+
+#: accounting/templates/accounting/users/password.html:36
+#: accounting/templates/accounting/users/password.html:39
+msgid "Confirm Password"
+msgstr ""
+
+#: accounting/templates/accounting/users/permissions.html:20
+msgid "User Permissions"
+msgstr ""
+
+#: accounting/templates/accounting/users/permissions.html:21
+msgid "Change account access"
+msgstr ""
+
+#: accounting/templates/accounting/users/permissions.html:34
+#: accounting/templates/accounting/users/sidebar_menu.html:92
+#: accounting/templates/accounting/users/table/table_actions.html:12
+#: accounting/views.py:279
+msgid "Roles & Permissions"
+msgstr ""
+
+#: accounting/templates/accounting/users/permissions.html:35
+msgid "Available Roles"
+msgstr ""
+
+#: accounting/templates/accounting/users/permissions.html:35
+msgid "Selected Roles"
+msgstr ""
+
+#: accounting/templates/accounting/users/sidebar_menu.html:19
+msgid "Since "
+msgstr ""
+
+#: accounting/templates/accounting/users/sidebar_menu.html:32
+msgid "Birthday"
+msgstr ""
+
+#: accounting/templates/accounting/users/sidebar_menu.html:43
+msgid "My Profile"
+msgstr ""
+
+#: accounting/templates/accounting/users/sidebar_menu.html:53
+#: accounting/templates/accounting/users/table/table_actions.html:4
+#: accounting/views.py:177
+msgid "Account Information"
+msgstr ""
+
+#: accounting/templates/accounting/users/sidebar_menu.html:63
+msgid "Account Security"
+msgstr ""
+
+#: accounting/templates/accounting/users/sidebar_menu.html:72
+msgid "Connected Accounts"
+msgstr ""
+
+#: accounting/templates/accounting/users/table/table_boolean.html:4
+msgid "Active"
+msgstr ""
+
+#: accounting/templates/accounting/users/table/table_boolean.html:6
+msgid "Inactive"
+msgstr ""
+
+#: accounting/views.py:57
+msgid "Invalid request. "
+msgstr ""
+
+#: accounting/views.py:63
+#, python-brace-format
+msgid "Welcome to {current_site.solution.name}. "
+msgstr ""
+
+#: accounting/views.py:67
+msgid "Phone and confirmation Code are required"
+msgstr ""
+
+#: accounting/views.py:95
+msgid "User Accounts"
+msgstr ""
+
+#: accounting/views.py:130
+msgid "New User registered successfully!"
+msgstr ""
+
+#: accounting/views.py:135
+msgid "New User Account"
+msgstr ""
+
+#: accounting/views.py:137 accounting/views.py:179 accounting/views.py:740
+#: accounting/views.py:766
+msgid "Available Sites"
+msgstr ""
+
+#: accounting/views.py:138 accounting/views.py:180 accounting/views.py:741
+#: accounting/views.py:767
+msgid "Selected Sites"
+msgstr ""
+
+#: accounting/views.py:172
+msgid "Account Information updated for User {object.__str__()}"
+msgstr ""
+
+#: accounting/views.py:223
+msgid "Account Password updated for User {object.__str__()}"
+msgstr ""
+
+#: accounting/views.py:273
+msgid "Permissions updated for User {object.__str__()}"
+msgstr ""
+
+#: accounting/views.py:309
+msgid "User Accounts selected removed successfully"
+msgstr ""
+
+#: accounting/views.py:312
+msgid "No User Accounts selected"
+msgstr ""
+
+#: accounting/views.py:331
+msgid "Confirmation Codes"
+msgstr ""
+
+#: accounting/views.py:349
+msgid ""
+"Confirmation Code {object.code} registered for User {object.user.__str__()}"
+msgstr ""
+
+#: accounting/views.py:354 accounting/views.py:372
+msgid "Confirmation Code"
+msgstr ""
+
+#: accounting/views.py:367
+#, python-brace-format
+msgid "Confirmation Code updated: {object.code}"
+msgstr ""
+
+#: accounting/views.py:385
+msgid "Confirmation Code deleted!"
+msgstr ""
+
+#: accounting/views.py:402
+msgid "{len(selection)} Confirmation Codes deleted successfully"
+msgstr ""
+
+#: accounting/views.py:405
+msgid "No Confirmation Codes selected"
+msgstr ""
+
+#: accounting/views.py:425
+msgid "Auth Tokens"
+msgstr ""
+
+#: accounting/views.py:438
+msgid "Token {object.key} registered for User {object.user.__str__()}"
+msgstr ""
+
+#: accounting/views.py:443 accounting/views.py:464
+msgid "Token"
+msgstr ""
+
+#: accounting/views.py:459
+#, python-brace-format
+msgid "Token updated: {object.key}"
+msgstr ""
+
+#: accounting/views.py:477
+#, python-brace-format
+msgid "Token {object.key} for User {object.user} deleted!"
+msgstr ""
+
+#: accounting/views.py:490
+msgid "{objects.count()} Tokens deleted successfully"
+msgstr ""
+
+#: accounting/views.py:515 accounting/views.py:539 accounting/views.py:564
+msgid "Email Address"
+msgstr ""
+
+#: accounting/views.py:528 accounting/views.py:553 accounting/views.py:728
+#: accounting/views.py:754
+msgid "Sorry, an error has occurred. Please, check your form data: "
+msgstr ""
+
+#: accounting/views.py:534
+msgid ""
+"Email Address {object.email} registered for User {object.user.__str__()}"
+msgstr ""
+
+#: accounting/views.py:559
+#, python-brace-format
+msgid "Email Address updated: {object.email}"
+msgstr ""
+
+#: accounting/views.py:577
+#, python-brace-format
+msgid "Email Address {object.email} for User {object.user} deleted!"
+msgstr ""
+
+#: accounting/views.py:594
+msgid "{len(selection)} Email Address deleted successfully"
+msgstr ""
+
+#: accounting/views.py:597
+msgid "No Email Address selected"
+msgstr ""
+
+#: accounting/views.py:616
+msgid "Confirmation Emails"
+msgstr ""
+
+#: accounting/views.py:635
+msgid ""
+"Email confirmation {object.email_address} registered for User {object."
+"email_address.user.__str__()}"
+msgstr ""
+
+#: accounting/views.py:640
+msgid "Confirmation Email "
+msgstr ""
+
+#: accounting/views.py:659
+#, python-brace-format
+msgid "Email confirmation updated: {object.email_address}"
+msgstr ""
+
+#: accounting/views.py:664
+msgid "Confirmation Email"
+msgstr ""
+
+#: accounting/views.py:676
+#, python-brace-format
+msgid ""
+"Email confirmation {object.email_address} for User {object.email_address."
+"user} deleted!"
+msgstr ""
+
+#: accounting/views.py:693
+msgid "{len(selection)} Email confirmations deleted successfully"
+msgstr ""
+
+#: accounting/views.py:696
+msgid "No Email confirmations selected"
+msgstr ""
+
+#: accounting/views.py:715
+msgid "Social Apps"
+msgstr ""
+
+#: accounting/views.py:734
+#, python-brace-format
+msgid ""
+"Social App {object.name} registered for Solution {self.request.solution_name}"
+msgstr ""
+
+#: accounting/views.py:739
+msgid "New Social App"
+msgstr ""
+
+#: accounting/views.py:760
+#, python-brace-format
+msgid "Social App updated: {object.name}"
+msgstr ""
+
+#: accounting/views.py:765
+msgid "Update Social App"
+msgstr ""
+
+#: accounting/views.py:779
+#, python-brace-format
+msgid "Social App {object.name} deleted!"
+msgstr ""
+
+#: accounting/views.py:796
+msgid "{len(selection)} Social App deleted successfully"
+msgstr ""
+
+#: accounting/views.py:799
+msgid "No Social Apps selected"
+msgstr ""
+
+#: accounting/views.py:818
+msgid "Social Accounts"
+msgstr ""
+
+#: accounting/views.py:831
+#, python-brace-format
+msgid ""
+"Social Account for Provider {object.provider} registered for Solution {self."
+"request.solution_name}"
+msgstr ""
+
+#: accounting/views.py:836
+msgid "New Social Account"
+msgstr ""
+
+#: accounting/views.py:849
+#, python-brace-format
+msgid "Social Account for Provider {object.provider} updated!"
+msgstr ""
+
+#: accounting/views.py:854
+msgid "Update Social Account"
+msgstr ""
+
+#: accounting/views.py:866
+#, python-brace-format
+msgid "Social Account for {object.provider} deleted!"
+msgstr ""
+
+#: accounting/views.py:883
+msgid "{len(selection)} Social Accounts deleted successfully"
+msgstr ""
+
+#: accounting/views.py:886
+msgid "No Social Accounts selected"
+msgstr ""
+
+#: accounting/views.py:905
+msgid "Social Tokens"
+msgstr ""
+
+#: accounting/views.py:918
+msgid ""
+"Social Token {object.__str__()} registered for Solution {self.request."
+"solution_name}"
+msgstr ""
+
+#: accounting/views.py:923
+msgid "New Social Token"
+msgstr ""
+
+#: accounting/views.py:936
+msgid "Social Token {object.__str__()} updated!"
+msgstr ""
+
+#: accounting/views.py:941
+msgid "Update Social Token"
+msgstr ""
+
+#: accounting/views.py:953
+msgid "Social Token for {object.__str__()} deleted!"
+msgstr ""
+
+#: accounting/views.py:970
+msgid "{len(selection)} Social Tokens deleted successfully"
+msgstr ""
+
+#: accounting/views.py:973
+msgid "No Social Tokens selected"
+msgstr ""
+
+#: accounting/views.py:991
+msgid "Auth Roles"
+msgstr ""
+
+#: accounting/views.py:1014
+msgid "Role {object.name.upper()} registered successfully!"
+msgstr ""
+
+#: accounting/views.py:1019
+msgid "New Role"
+msgstr ""
+
+#: accounting/views.py:1042
+msgid "Role updated: {object.name.upper()}"
+msgstr ""
+
+#: accounting/views.py:1047
+msgid "Update Role"
+msgstr ""
+
+#: accounting/views.py:1059
+msgid "Role {object.name.upper()}  deleted!"
+msgstr ""
+
+#: accounting/views.py:1076
+msgid "{len(selection)} Roles deleted successfully"
+msgstr ""
+
+#: accounting/views.py:1079
+msgid "No Roles selected"
+msgstr ""

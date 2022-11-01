@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<div class="card card-flush py-4">
+    <div class="card-header">
+        <div class="card-title">
+            <h2>{% trans "Application Settings" %}</h2>
+        </div>
+    </div>
+    <div class="card-body pt-0">
+        <h3>{% trans "Client Type" %}:</h3>
+        <p> {{ application.client_type }}</p>
+        <h3>{% trans "Authorization Type" %}:</h3>
+        <p> {{ application.authorization_grant_type }}</p>
+    </div>
+</div>

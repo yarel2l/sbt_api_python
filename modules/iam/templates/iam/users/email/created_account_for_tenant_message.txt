@@ -1,0 +1,24 @@
+{% load i18n %}
+{% blocktrans with site_name=site_name site_domain=domain %}
+
+Hi, {{ fullname }}.
+
+Welcome to, {{ site_name }}!
+
+If you have received this email it is because you or someone else has created an account in our system for one of our clients.
+
+Please, check your User Account bellow:
+
+Client: {{ site_name }}
+Email: {{ email }}
+Password: {{ password }}
+
+To login please follow this link: {{ login_url }}.
+
+{% endblocktrans %}
+{% blocktrans with site_name=site_name site_domain=domain %}
+
+Thank you from our Team in {{ site_name }}!
+
+{{ site_domain }}
+{% endblocktrans %}

@@ -1,0 +1,15 @@
+[Unit]
+Description={{ project_name }} scheduler
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory={{ app_modules }}
+ExecStart={{ venv_path }}/bin/python {{app_modules}}/manage.py rqscheduler
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

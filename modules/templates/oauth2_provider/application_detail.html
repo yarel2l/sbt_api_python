@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-lg-row">
+    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+        <!--begin::global perms-->
+        {% include "oauth2_provider/card_settings.html" %}
+        <!--end::global perms-->
+    </div>
+
+    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+        {% include "oauth2_provider/card_client.html" %}
+        {% include "oauth2_provider/card_urls.html" %}
+
+        <div class="d-flex justify-content-end">
+            <!--begin::Button-->
+            <a href="{{ request.META.HTTP_REFERER }}" id="btn_cancel" class="btn btn-light me-5">{% trans "Cancel" %}</a>
+            <!--end::Button-->
+            <a class="btn btn-primary me-5" href="{% url "app-update" application.id %}">{% trans "Edit" %}</a>
+            <a class="btn btn-danger me-5 delete-button" data-method="DELETE" data-id="{{application.pk}}" href="{% url "app-delete" application.id %}">{% trans "Delete" %}</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

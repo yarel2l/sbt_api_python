@@ -1,0 +1,25 @@
+{% extends "forms.html" %}
+{% load i18n sekizai_tags %}
+{% block form_title %}{% trans "Edit application" %} {{ application.name }}{% endblock %}
+{% block form_url %}{% url 'app-update' application.id %}{% endblock %}
+
+
+{% block form_body %}
+
+    {% include "form_snippets/input_fields.html" with field=form.name %}
+    {% include "form_snippets/input_clipboard.html" with field=form.client_id clipboard_id="clipboard_ci" %}
+    {% include "form_snippets/input_clipboard.html" with field=form.client_secret clipboard_id="clipboard_cs" %}
+    {% include "form_snippets/input_fields.html" with field=form.client_type %}
+    {% include "form_snippets/input_fields.html" with field=form.authorization_grant_type %}
+    {% include "form_snippets/input_fields.html" with field=form.redirect_uris %}
+
+
+    {% addtoblock "page_css" %}
+        {{ form.media.css }}
+    {% endaddtoblock %}
+
+    {% addtoblock "page_js" %}
+        {{ form.media.js }}
+    {% endaddtoblock %}
+
+{% endblock %}

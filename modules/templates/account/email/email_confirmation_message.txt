@@ -1,0 +1,27 @@
+{% load account %}
+{% user_display user as user_display %}
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans with site_name=site_name site_domain=domain %}
+
+Welcome {{ user_display }}!
+
+You recently registered for {{ site_name }}. To complete your {{ site_name }} registration, please confirm your account.
+{% endblocktrans %}
+
+{{ activate_url }}{% if next %}?next={{next}}{% endif %}
+
+
+{% if otp %}
+{% trans "You can also validate your account using this confirmation code" %}
+Confirmation Code: {{ otp }}
+{% endif %}
+
+
+{% endautoescape %}
+{% blocktrans with site_name=site_name site_domain=domain %}
+
+Thank you from our Team in {{ site_name }}!
+
+{{ site_domain }}
+{% endblocktrans %}

@@ -1,0 +1,26 @@
+{% extends "account/base.html" %}
+{% load i18n static widget_tweaks account sekizai_tags %}
+
+{% block title %}{% trans 'Email Verification Sent' %}{% endblock %}
+
+{% block content %}
+<div class="text-center mb-10">
+    <h1 class="text-dark fw-bolder mb-3 fs-1">{% trans "Email Verification Sent" %}</h1>
+</div>
+<div class="fw-bold fs-5 mb-5">
+    <div class="notice d-flex bg-light-success rounded border-success border border-dashed rounded-3 p-6">
+        <div class="d-flex flex-stack flex-grow-1">
+            <div class="fw-bold">
+                <h4 class="text-gray-800 fw-bolder">{% trans 'Email Verification Sent' %}</h4>
+                <div class="fs-6 text-gray-600">
+                    {% blocktrans with email=user.show_email %}
+                        We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process.<br/>
+                        If you do not see the verification e-mail in your main inbox, check your spam folder.<br/>
+                        Please contact us if you do not receive the verification e-mail within a few minutes.
+                    {% endblocktrans %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

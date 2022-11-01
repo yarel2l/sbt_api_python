@@ -1,0 +1,21 @@
+{% load i18n %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.site.domain %}
+
+Hi, {{ fullname }}.
+
+Welcome to, {{ site_name }}!
+
+Check your User Account bellow:
+
+Email: {{ email }}
+Password: {{ password }}
+
+To login please follow this link: {{ login_url }}.
+
+{% endblocktrans %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.site.domain %}
+
+Thank you from our Team in {{ site_name }}!
+
+{{ site_domain }}
+{% endblocktrans %}

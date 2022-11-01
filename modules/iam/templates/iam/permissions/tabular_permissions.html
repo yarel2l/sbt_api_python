@@ -1,0 +1,153 @@
+{% load i18n static %}
+
+<table id="tabular_permissions" class="table table-hover table-rounded border gy-7 gs-7" data-input-name="{{ input_name }}">
+    <thead class="bg-primary-o-10">
+        <tr>
+            <th><strong>{% trans 'applications'|upper %}</strong></th>
+            <th><strong>{% trans 'models'|upper %}</strong></th>
+            {% if django_supports_view_permissions %}
+            <th>
+                <div class="form-check form-check-custom form-check-solid" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="{% trans 'Click to Select All' %}">
+                    <input type="checkbox" class="form-check-input select-all view" id="perm_view_select_all">
+                    <label class="form-check-label">
+                        <strong>{% trans 'View'|upper %}</strong>
+                    </label>
+                </div>
+            </th>
+            {% endif %}
+            <th>
+                <div class="form-check form-check-custom form-check-solid" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="{% trans 'Click to Select All' %}">
+                    <input type="checkbox" class="form-check-input select-all add" id="perm_add_select_all">
+                    <label class="form-check-label">
+                        <strong>{% trans 'Add'|upper %}</strong>
+                    </label>
+                </div>
+            </th>
+            <th>
+                <div class="form-check form-check-custom form-check-solid" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="{% trans 'Click to Select All' %}">
+                    <input type="checkbox" class="form-check-input select-all change" id="perm_change_select_all">
+                    <label class="form-check-label">
+                        <strong>{% trans 'Change'|upper %}</strong>
+                    </label>
+                </div>
+            </th>
+            <th>
+                <div class="form-check form-check-custom form-check-solid" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="{% trans 'Click to Select All' %}">
+                    <input type="checkbox" class="form-check-input select-all delete" id="perm_delete_select_all">
+                    <label class="form-check-label">
+                        <strong>{% trans 'Delete'|upper %}</strong>
+                    </label>
+                </div>
+            </th>
+            {% if custom_permissions_available %}
+                <th>
+                    <div class="form-check form-check-custom form-check-solid" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="{% trans 'Click to Select All' %}">
+                        <input type="checkbox" class="form-check-input select-all custom" id="perm_others_select_all">
+                        <label class="form-check-label">
+                            <strong>{% trans 'Custom Permissions'|upper %}</strong>
+                        </label>
+                    </div>
+                </th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for app in apps_available.values %}
+
+        {% for model in app.models.values %}
+
+            <tr class="{% cycle 'row1' 'row2' %}">
+
+                {% if forloop.counter0 == 0 %}
+                    <td rowspan="{{ app.models|length }}" class="app-name" data-app-name="{{ app.label }}">
+                        <strong>{{ app.verbose_name|capfirst }}</strong>
+                    </td>
+                {% endif %}
+
+                <td class="min-w-100px text-right">
+                    <div class="form-check form-check-custom form-check-solid form-check-sm" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="{% trans 'Click to Select Model Permissions' %}">
+                        <input type="checkbox" class="form-check-input select-all select-row" data-model-name="{{ model.model_name }}">
+                        <label class="form-check-label">
+                            <strong>{{ model.verbose_name|capfirst }}</strong>
+                        </label>
+                    </div>
+                </td>
+                {% if django_supports_view_permissions %}
+                <td class="view">
+                    {% if model.view_perm_id %}
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input type="checkbox" class="form-check-input checkbox view model-{{ model.model_name }}" data-perm-id="{{ model.view_perm_id }}" id="id_{{ model.label }}_{{ model.view_perm_name }}"
+                                   {% if model.view_perm_id in user_permissions %}checked="checked"{% endif %}/>
+                        </div>
+                    {% endif %}
+                </td>
+                {% endif %}
+                <td class="add">
+                    {% if model.add_perm_id %}
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input type="checkbox" class="form-check-input checkbox add model-{{ model.model_name }}" data-perm-id="{{ model.add_perm_id }}" id="id_{{ model.label }}_{{ model.add_perm_name }}"
+                                   {% if model.add_perm_id in user_permissions %}checked="checked"{% endif %}/>
+                        </div>
+                    {% endif %}
+                </td>
+                <td class="change">
+                    {% if model.change_perm_id %}
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input type="checkbox" class="form-check-input checkbox change model-{{ model.model_name }}" data-perm-id="{{ model.change_perm_id }}" id="id_{{ model.label }}_{{ model.change_perm_name }}"
+                                   {% if model.change_perm_id in user_permissions %}checked="checked"{% endif %}/>
+                        </div>
+                    {% endif %}
+                </td>
+                <td class="delete">
+                    {% if model.delete_perm_id %}
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input type="checkbox" class="form-check-input checkbox delete model-{{ model.model_name }}" data-perm-id="{{ model.delete_perm_id }}" id="id_{{ model.label }}_{{ model.delete_perm_name }}"
+                                   {% if model.delete_perm_id in user_permissions %}checked="checked"{% endif %}/>
+                        </div>
+
+                    {% endif %}
+                </td>
+                {% if custom_permissions_available %}
+                    <td>
+                        {% for custom_permission in model.custom_permissions %}
+                            <div class="checkbox-inline" data-toggle="tooltip" title="{% trans 'Click to add ' %}">
+                                <label class="checkbox">
+                                    <input type="checkbox" class="checkbox custom model-{{ model.model_name }}"
+                                           id="id_{{ model.label }}_{{ custom_permission.0 }}" data-perm-id="{{ custom_permission.2 }}"
+                                            {% if custom_permission.2 in user_permissions %}
+                                           checked="checked"
+                                            {% endif %}>
+                                    <span></span>
+                                    {{ custom_permission.1 }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+<hr/>
+{% block style %}
+    {#    Seems a waste to request those couple of sad lines from the server as separate css file #}
+    <style>
+        {% comment %}.user-permissions-app-separator {
+            border-bottom: 1px solid black;
+        }{% endcomment %}
+
+        .app-name {
+            border-right: 1px black solid;
+        }
+
+        th {
+            text-decoration: underline;
+        }
+
+        .select-all {
+            font-style: italic;
+        }
+
+    </style>
+{% endblock %}

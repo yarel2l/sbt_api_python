@@ -1,0 +1,36 @@
+{% load i18n %}
+
+
+<div class="modal fade " id="timezone_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{% trans "Timezone Settings" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans "Close" %}"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h6>{% trans 'Hello,' %} {{ request.user }}</h6>
+                    <p>
+                        {% blocktrans with db_tz=request.user.timezone %}
+                            We have detected that your time zone({{ db_tz }}) does not correspond to your current location.
+                            We advise you to update this information so that all dates and times are those established by your time zone.
+                            Click in button 'Save' to update your current selected location in database.
+                        {% endblocktrans %}
+                    </p>
+                </div>
+                <form>
+                    {% include 'form_snippets/input_fields.html' with field=timezone_form.timezone_input %}
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Discard" %}</button>
+                <button type="button" id="save_timezone_btn" class="btn btn-primary">{% trans "Save" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

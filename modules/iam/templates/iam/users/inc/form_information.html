@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<form class="form" enctype="multipart/form-data" method="post">{% csrf_token %}
+    <div class="card mb-5 mb-xl-10" id="kt_profile_account_info">
+        <div class="card-header">
+            <div class="card-title m-0">
+                <h3 class="fw-bolder m-0">{% trans "Account Details" %}</h3>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary align-self-center">{% trans "Update" %}</button>
+        </div>
+        <div id="kt_profile_details_view">
+            <div class="card-body p-9">
+                <div class="row mb-7">
+                    {% include "form_snippets/form_fields.html" with form=form %}
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <button type="submit" class="btn btn-sm btn-primary align-self-center">{% trans "Update" %}</button>
+            </div>
+        </div>
+    </div>
+</form>

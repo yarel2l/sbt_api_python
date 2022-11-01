@@ -1,0 +1,99 @@
+{% load i18n tz static %}
+
+<div class="flex-row-auto offcanvas-mobile w-250px w-xxl-350px" id="kt_profile_aside">
+    <div class="card card-custom card-stretch">
+        <div class="card-body pt-4">
+            <div class="d-flex justify-content-end">
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
+                    <div class="flex-shrink-0">
+                        <div class="symbol symbol-50 symbol-lg-60 symbol-success">
+                            <span class="font-size-h3 symbol-label font-weight-boldest">{{ user.initials_name|upper }}</span>
+                        </div>
+                    </div>
+                    <i class="symbol-badge bg-success"></i>
+                </div>
+                <div>
+                    <a href="{{ user.get_absolute_url }}" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">{{ user }}</a>
+                    <div class="text-muted">{% trans "Since " %}{{ user.date_joined|timesince }}</div>
+                </div>
+            </div>
+            <div class="py-9">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="font-weight-bold mr-2">{% trans "Email" %}:</span>
+                    <a href="mailto:{{ user.email }}" class="text-muted text-hover-primary">{{ user.email }}</a>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="font-weight-bold mr-2">{% trans "Phone" %}:</span>
+                    <span class="text-muted">{{ user.phone_number }}</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="font-weight-bold mr-2">{% trans "Birthday" %}:</span>
+                    <span class="text-muted">{{ user.profile.birthday|date:"M d, Y" }}</span>
+                </div>
+            </div>
+            <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+                {% if user.profile %}
+                <div class="navi-item mb-2">
+                    <a href="{% if user.profile %}{{ user.profile.get_absolute_url }}{% else %}{% url 'profiles:account_profile' user.uid %}{% endif %}" class="navi-link py-4 {% if request.resolver_match.url_name == "account_profile" %}active{%endif%}">
+                        <span class="navi-icon mr-2">
+                            <i class="fas fa-user-edit"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">{% trans "My Profile" %}</span>
+                    </a>
+                </div>
+                {% endif %}
+
+                <div class="navi-item mb-2">
+                    <a href="{{ user.get_absolute_url }}" class="navi-link py-4 {% if request.resolver_match.url_name == "account_information" %}active{%endif%}">
+                        <span class="navi-icon mr-2">
+                            <i class="fas fa-portrait"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">{% trans "Account Information" %}</span>
+                    </a>
+                </div>
+
+                {% if user == request.user %}
+                <div class="navi-item mb-2">
+                    <a href="{% url 'two_factor:profile' %}" class="navi-link py-4 {% if request.resolver_match.url_name == "profile" %}active{%endif%}">
+                        <span class="navi-icon mr-2">
+                            <i class="fas fa-user-shield"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">{% trans "Account Security" %}</span>
+                    </a>
+                </div>
+
+                <div class="navi-item mb-2">
+                    <a href="{% url 'socialaccount_connections' %}" class="navi-link py-4 {% if request.resolver_match.url_name == "socialaccount_connections" %}active{%endif%}">
+                        <span class="navi-icon mr-2">
+                            <i class="fas fa-users-cog"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">{% trans "Connected Accounts" %}</span>
+                    </a>
+                </div>
+                {% endif %}
+
+                <div class="navi-item mb-2">
+                    <a href="{{ user.get_password_change_url }}" class="navi-link py-4 {% if request.resolver_match.url_name == "password_change_view" %}active{%endif%}">
+                        <span class="navi-icon mr-2">
+                            <i class="fas fa-fingerprint"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">{% trans "Change Password" %}</span>
+                    </a>
+                </div>
+
+                {% if perms.auth.change_permission %}
+                <div class="navi-item mb-2">
+                    <a href="{{ user.get_permissions_url }}" class="navi-link py-4 {% if request.resolver_match.url_name == "account_permissions" %}active{%endif%}">
+                        <span class="navi-icon mr-2">
+                            <i class="fas fa-lock-open"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">{% trans "Roles & Permissions" %}</span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,187 @@
+---
+- name: Staging app deployment
+  hosts: app-staging
+  become: yes
+  tasks:
+
+    - name: Create database
+      become: true
+      become_user: postgres
+      postgresql_db:
+        name: "{{ postgres_db }}"
+        state: present
+
+    - name: Setup password for user postgres
+      become: true
+      become_user: postgres
+      postgresql_user:
+        name: postgres
+        password: "{{ postgres_password }}"
+        state: present
+        encrypted: yes
+
+    - name: Create dir
+      file:
+        path: "{{ base_path }}"
+        state: directory
+        group: www-data
+        mode: 0775
+        recurse: true
+
+    - name: Get code
+      git:
+        repo: "{{ git_url }}"
+        dest: "{{ app_path }}"
+        version: "{{ repo_branch }}"
+        force: true
+
+    - name: Update permissions
+      file:
+        path: "{{ base_path }}"
+        state: directory
+        group: www-data
+        mode: 0775
+        recurse: true
+
+    - name: Make manage.py executable
+      file:
+        path: "{{ app_modules }}/manage.py"
+        mode: +x
+
+    - name: Copy .env file
+      template:
+        src: env.j2
+        dest: "{{ app_modules }}/.env"
+        backup: true
+
+    - name: Install python dependencies
+      pip:
+        chdir: "{{ app_modules }}"
+        requirements: "{{ requirements_path }}"
+        virtualenv: "{{ venv_path }}"
+        virtualenv_python: python3
+
+    - name: Apply migrations
+      django_manage:
+        app_path: "{{ app_modules }}"
+        command: migrate
+        virtualenv: "{{ venv_path }}"
+
+    - name: Check if superuser user exists, if not, create user.
+      django_manage:
+        command: shell -c "from django.contrib.auth.hashers import make_password; from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(email__exact='{{ admin_email }}').count() == 0 or exit(); new_super_user = User(username='{{ admin_user }}', email='{{ admin_email }}', is_superuser=True, is_staff=True); new_super_user.password = make_password('{{ admin_password }}'); new_super_user.save();"
+        app_path: "{{ app_modules }}"
+        virtualenv: "{{ venv_path }}"
+
+    - name: Collect static files
+      django_manage:
+        app_path: "{{ app_modules }}"
+        command: collectstatic
+        virtualenv: "{{ venv_path }}"
+
+    - name: Update permissions
+      file:
+        path: "{{ base_path }}"
+        state: directory
+        group: www-data
+        mode: 0775
+        recurse: true
+
+    - name: Copy app unit
+      template:
+        src: service.j2
+        dest: /lib/systemd/system/{{ project_name }}.service
+        backup: true
+
+    - name: Enable app service
+      systemd:
+        name: "{{ project_name }}.service"
+        daemon_reload: true
+        enabled: true
+        state: restarted
+
+    - name: Copy low worker unit
+      template:
+        src: worker.j2
+        dest: /lib/systemd/system/{{ project_name }}-worker-low@.service
+        backup: true
+      vars:
+        queue: low
+
+    - name: Enable low worker service
+      systemd:
+        name: "{{ project_name }}-worker-low@one.service"
+        daemon_reload: true
+        enabled: true
+        state: restarted
+
+    - name: Copy default worker unit
+      template:
+        src: worker.j2
+        dest: /lib/systemd/system/{{ project_name }}-worker-default@.service
+        backup: true
+      vars:
+        queue: default
+
+    - name: Enable default worker service
+      systemd:
+        name: "{{ project_name }}-worker-default@{{ item }}.service"
+        daemon_reload: true
+        enabled: true
+        state: restarted
+      loop:
+        - "one"
+        - "two"
+        - "three"
+
+    - name: Copy high worker unit
+      template:
+        src: worker.j2
+        dest: /lib/systemd/system/{{ project_name }}-worker-high@.service
+        backup: true
+      vars:
+        queue: high
+
+    - name: Enable high worker service
+      systemd:
+        name: "{{ project_name }}-worker-high@{{ item }}.service"
+        daemon_reload: true
+        enabled: true
+        state: restarted
+      loop:
+        - "one"
+        - "two"
+        - "three"
+        - "four"
+        - "five"
+
+    - name: Copy scheduler unit
+      template:
+        src: scheduler.j2
+        dest: /lib/systemd/system/{{ project_name }}-scheduler.service
+        backup: true
+
+    - name: Enable scheduler service
+      systemd:
+        name: "{{ project_name }}-scheduler.service"
+        daemon_reload: true
+        enabled: true
+        state: restarted
+
+    - name: Generate ssl certificate with certbot
+      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --no-eff-email
+      args:
+        creates: /etc/letsencrypt/live/{{ domain }}
+
+    - name: Copy nginx site configuration
+      template:
+        src: default.j2
+        dest: /etc/nginx/sites-available/default
+        backup: yes
+
+    - name: Restart nginx
+      systemd:
+        name: "nginx.service"
+        daemon_reload: true
+        enabled: true
+        state: restarted
