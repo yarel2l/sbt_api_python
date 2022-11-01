@@ -14,7 +14,7 @@ class CustomUserAdmin(UserAdmin, admin.ModelAdmin):
     list_display = ("email", "timezone", "preferred_language", "is_active")
     add_fieldsets = (
         (None, {
-            'fields': ('first_name', 'middle_name', 'last_name',
+            'fields': ('first_name', 'last_name',
                        'email', 'password1', 'password2')}
          ),
     )

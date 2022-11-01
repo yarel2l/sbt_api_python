@@ -3,6 +3,9 @@ from decouple import config
 
 DEBUG = False
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
+
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
 FILE_UPLOAD_PERMISSIONS = 0o644
@@ -68,3 +71,5 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
