@@ -166,40 +166,40 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
 }
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "mail_admins": {"level": "ERROR", "class": "django.utils.log.AdminEmailHandler", "formatter": "verbose"},
-        "console": {"level": "DEBUG", "class": "logging.StreamHandler", "formatter": "verbose"},
-        "logfile": {
-            "level": "INFO",
-            "class": "logging.handlers.TimedRotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "logs/system.log"),
-            "when": "midnight",
-            "interval": 1,
-            "backupCount": 100,
-            "formatter": "verbose",
-        },
-    },
-    "formatters": {
-        "verbose": {
-            "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            "datefmt": "%d/%b/%Y %H:%M:%S",
-        }
-    },
-    "loggers": {
-        "": {
-            "handlers": ["console", "logfile"],
-            "level": "INFO",
-            "propagate": True
-        },
-        "django": {
-            'handlers': ['console'],
-            'level': 'WARNING',
-        },
-    },
-}
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "mail_admins": {"level": "ERROR", "class": "django.utils.log.AdminEmailHandler", "formatter": "verbose"},
+#         "console": {"level": "DEBUG", "class": "logging.StreamHandler", "formatter": "verbose"},
+#         "logfile": {
+#             "level": "INFO",
+#             "class": "logging.handlers.TimedRotatingFileHandler",
+#             "filename": os.path.join(BASE_DIR, "logs/system.log"),
+#             "when": "midnight",
+#             "interval": 1,
+#             "backupCount": 100,
+#             "formatter": "verbose",
+#         },
+#     },
+#     "formatters": {
+#         "verbose": {
+#             "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#             "datefmt": "%d/%b/%Y %H:%M:%S",
+#         }
+#     },
+#     "loggers": {
+#         "": {
+#             "handlers": ["console", "logfile"],
+#             "level": "INFO",
+#             "propagate": True
+#         },
+#         "django": {
+#             'handlers': ['console'],
+#             'level': 'WARNING',
+#         },
+#     },
+# }
 
 
 # AUTH
