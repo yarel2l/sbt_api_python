@@ -168,10 +168,10 @@
         enabled: true
         state: restarted
 
-    - name: Generate ssl certificate with certbot
-      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --no-eff-email
-      args:
-        creates: /etc/letsencrypt/live/{{ domain }}
+#    - name: Generate ssl certificate with certbot
+#      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --no-eff-email
+#      args:
+#        creates: /etc/letsencrypt/live/{{ domain }}
 
     - name: Copy nginx site configuration
       template:
