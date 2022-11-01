@@ -13,9 +13,9 @@ socket_path: "{{ app_modules }}/config/{{ project_name }}.sock"
 
 app_gateway: "config.asgi"
 
-requirements_path: "requirements/prod.txt"
+requirements_path: "requirements.txt"
 
-git_url: "https://yarel2l:{{ github_token }}@github.com/yarel2l/scorbot-api-python.git"
+git_url: "https://yarel2l:{{ github_token }}@github.com/yarel2l/sbt_api_python.git"
 
 repo_branch: "staging"
 

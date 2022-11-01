@@ -3,17 +3,6 @@ from decouple import config
 
 DEBUG = False
 
-INSTALLED_APPS.append("raven.contrib.django")
-MIDDLEWARE += [
-    # "raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware",
-    "raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware",
-]
-
-LOGGING["handlers"]["sentry"] = {"level": "ERROR", "class": "raven.contrib.django.raven_compat.handlers.SentryHandler"}
-LOGGING["loggers"][""]["handlers"].append("sentry")
-
-RAVEN_CONFIG = {"dsn": config("SENTRY_DSN")}
-
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
 FILE_UPLOAD_PERMISSIONS = 0o644
