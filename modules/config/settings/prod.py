@@ -55,7 +55,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ALLOWED_HOSTS = ["*", "18.234.238.251", "api-v1-dev.scorbot.com", "api-v1.scorbot.com"]
+ALLOWED_HOSTS = ["*", "34.230.40.43", "sbt.codevbros.com", "codevbros.com"]
 
 CORS_ALLOWED_ORIGINS = [
     "https://scorbot.com",

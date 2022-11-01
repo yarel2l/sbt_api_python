@@ -1,0 +1,21 @@
+name: Test Deploy to EC2
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dawidd6/action-ansible-playbook@v2
+        with:
+          directory: ./deployment/playbooks
+          playbook: staging.yml
+          key: ${{secrets.TEST_SSH_PRIVATE_KEY}}
+          vault_password: ${{secrets.VAULT_PASSWORD}}
+          options: |
+              --inventory ../inventory/hosts
+              --user ubuntu

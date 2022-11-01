@@ -2,4 +2,4 @@
 ansible_python_interpreter=/usr/bin/python3
 
 [app-staging]
-18.234.238.251
+34.230.40.43
