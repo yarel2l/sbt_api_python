@@ -169,7 +169,7 @@
         state: restarted
 
     - name: Generate ssl certificate with certbot
-      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --no-eff-email
+      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --email {{admin_email}} --redirect --expand
       args:
         creates: /etc/letsencrypt/live/{{ domain }}
 
