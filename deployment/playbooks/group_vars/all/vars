@@ -17,7 +17,7 @@ requirements_path: "requirements.txt"
 
 git_url: "https://yarel2l:{{ github_token }}@github.com/yarel2l/sbt_api_python.git"
 
-repo_branch: "staging"
+repo_branch: "dev"
 
 app_environment: "prod"
 
