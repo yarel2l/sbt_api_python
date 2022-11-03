@@ -3,8 +3,7 @@ import re
 from django.db.models import Q
 from django_filters import rest_framework as filters
 from django.utils.translation import gettext_lazy as _
-from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
+from drf_spectacular.utils import extend_schema
 from rest_framework import exceptions, permissions, status, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
@@ -27,7 +26,7 @@ from .serializers import (
 )
 
 
-@extend_schema(description="Manage Scorbot tournaments", methods=["get", "post", "put", "patch"])
+@extend_schema(description="Manage Scorbot Events", methods=["get", "post", "put", "patch"])
 class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
                             mixins.CreateModelMixin,
                             # mixins.UpdateModelMixin,
@@ -37,22 +36,22 @@ class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
     serializer_class = TournamentSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = TournamentFilter
-    lookup_field = 'tournament_number'
-    lookup_url_kwarg = 'tournament_number'
+    lookup_field = 'event_number'
+    lookup_url_kwarg = 'event_number'
 
     def get_queryset(self):
-        return Tournament.objects.using('scorbot').order_by("-tournament_number", "name")
+        return Tournament.objects.using('scorbot').order_by("-event_number", "name")
 
     def get_object(self):
-        pattern = re.compile(r"^[0-9]+")  # check if tournament_number is a number
+        pattern = re.compile(r"^[0-9]+")  # check if event_number is a number
         if not pattern.match(self.kwargs.get(self.lookup_url_kwarg)):
-            raise exceptions.ValidationError({"tournament_number_invalid": _("Tournament number must be an integer")})
+            raise exceptions.ValidationError({"event_number_invalid": _("Event number must be an integer")})
         try:
             tournament = Tournament.objects.using('scorbot').get(
-                tournament_number=self.kwargs['tournament_number']
+                event_number=self.kwargs['event_number']
             )
         except Tournament.DoesNotExist:
-            raise ValidationError({"tournament_not_found": _("Tournament not found")}, code=status.HTTP_404_NOT_FOUND)
+            raise ValidationError({"event_not_found": _("Event not found")}, code=status.HTTP_404_NOT_FOUND)
 
         return tournament
 
@@ -74,17 +73,17 @@ class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
         context.update({"request": self.request})
         return context
 
-    @extend_schema(description="Get a tournament information")
+    @extend_schema(description="Get an event information")
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         return Response({
             "error": False,
-            "message": _("Tournament '#{} - {}' information").format(instance.tournament_number, instance.name),
+            "message": _("Event '#{} - {}' information").format(instance.event_number, instance.name),
             "results": serializer.data
         }, status=status.HTTP_200_OK)
 
-    @extend_schema(description="Create a new tournament")
+    @extend_schema(description="Create a new event")
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -94,24 +93,24 @@ class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
         headers = self.get_success_headers(serializer.data)
         return Response({
             "error": False,
-            "message": _("Tournament '#{} - {}' created successfully").format(new_tournament.tournament_number,
-                                                                              new_tournament.name),
+            "message": _("Event '#{} - {}' created successfully").format(new_tournament.event_number,
+                                                                         new_tournament.name),
             "results": self.serializer_class(new_tournament).data
         }, status=status.HTTP_201_CREATED, headers=headers)
 
-    @extend_schema(description="Get all divisions for a tournament")
+    @extend_schema(description="Get all divisions for an event")
     @action(detail=True, methods=["get"], url_path="division")
     def tournament_divisions(self, request, *args, **kwargs):
         tournament = self.get_object()
         serializer = self.get_serializer(tournament.divisions.all(), many=True)
         return Response({
             "error": False,
-            "message": _("Divisions for Tournament '#{} - {}' successfully").format(
-                tournament.tournament_number, tournament.name),
+            "message": _("Divisions for Event '#{} - {}' successfully").format(
+                tournament.event_number, tournament.name),
             "results": serializer.data
         }, status=status.HTTP_200_OK)
 
-    @extend_schema(description="Get a division for a tournament")
+    @extend_schema(description="Get a division for an event")
     @action(detail=True, methods=["get"], url_path="division/(?P<division_id>[0-9]+)")
     def tournament_division(self, request, division_id, **kwargs):
         tournament = self.get_object()
@@ -124,14 +123,14 @@ class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
                         serializer = self.get_serializer(division)
                         return Response({
                             "error": False,
-                            "message": _("Division for Tournament '#{} - {}' successfully").format(
-                                tournament.tournament_number, tournament.name),
+                            "message": _("Division for Event '#{} - {}' successfully").format(
+                                tournament.event_number, tournament.name),
                             "results": serializer.data
                         }, status=status.HTTP_200_OK)
                 except ScorbotDivision.DoesNotExist:
                     raise ValidationError(
-                        {"division_not_found": _("Division not found for Tournament '#{} - {}'").format(
-                            tournament.tournament_number, tournament.name)},
+                        {"division_not_found": _("Division not found for Event '#{} - {}'").format(
+                            tournament.event_number, tournament.name)},
                         code=status.HTTP_404_NOT_FOUND)
 
         else:
@@ -140,14 +139,14 @@ class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
                 "message": _("There are no divisions registered for the Tournament '{}'").format(tournament.name)
             }, status=status.HTTP_404_NOT_FOUND)
 
-    @extend_schema(description="Get all teams for a tournament")
+    @extend_schema(description="Get all teams for an event")
     @action(detail=True, methods=["get"], url_path="team")
     def tournament_teams(self, request, *args, **kwargs):
         tournament = self.get_object()
         serializer = self.get_serializer(tournament.tournament_teams_info.all(), many=True)
         return Response({
             "error": False,
-            "message": _("Tournament '#{} - {}' teams").format(tournament.tournament_number, tournament.name),
+            "message": _("Event '#{} - {}' teams").format(tournament.event_number, tournament.name),
             "results": serializer.data
         }, status=status.HTTP_200_OK)
 
@@ -164,21 +163,21 @@ class ManageTournamentsView(mixins.ListModelMixin, mixins.RetrieveModelMixin,
                         serializer = self.get_serializer(team)
                         return Response({
                             "error": False,
-                            "message": _("Team for Tournament '#{} - {}' successfully").format(
-                                tournament.tournament_number, tournament.name),
+                            "message": _("Team for Event '#{} - {}' successfully").format(
+                                tournament.event_number, tournament.name),
                             "results": serializer.data
                         }, status=status.HTTP_200_OK)
                 except TeamInfoNew.DoesNotExist:
                     raise ValidationError(
-                        {"team_not_found": _("Team not found for Tournament '#{} - {}'").format(
-                            tournament.tournament_number, tournament.name)},
+                        {"team_not_found": _("Team not found for Event '#{} - {}'").format(
+                            tournament.event_number, tournament.name)},
                         code=status.HTTP_404_NOT_FOUND)
 
         else:
             return Response({
                 "error": True,
-                "message": _("There are no teams registered for the Tournament '#{} - {}'").format(
-                    tournament.tournament_number, tournament.name)
+                "message": _("There are no teams registered for the Event '#{} - {}'").format(
+                    tournament.event_number, tournament.name)
             }, status=status.HTTP_404_NOT_FOUND)
 
     # @action(detail=True, methods=["post"], url_path="team")

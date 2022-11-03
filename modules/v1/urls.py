@@ -8,10 +8,10 @@ urlpatterns = [
     path('docs/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
     path('organization/', include('organizations.api.urls')),
-    # path('team/', include('teams.api.urls')),
-    # path('states/', include('states.api.urls')),
+    path('division/', include('divisions.api.urls')),
+    path('event/', include('tournaments.api.urls')),
+    path('team/', include('teams.api.urls')),
 
-    path('tournament/', include('tournaments.api.urls')),
     path('iam/', include('iam.api.urls')),
     path('', include('core.api.urls')),
 

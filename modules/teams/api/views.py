@@ -5,17 +5,17 @@ from rest_framework.authentication import TokenAuthentication
 # from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from ..filters import TeamCoachFilter
-from ..models import Team
-from .serializers import TeamSerializer
+from ..models import TeamCoach, TeamInfoNew
+from .serializers import TeamCoachSerializer, TeamInfoNewSerializer
 
 
 @extend_schema(description="List all teams", methods=["get"])
 class TeamsListView(generics.ListAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = TeamSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_class = TeamCoachFilter
+    serializer_class = TeamInfoNewSerializer
+    # filter_backends = (filters.DjangoFilterBackend,)
+    # filterset_class = TeamCoachFilter
 
     def get_queryset(self):
-        return Team.objects.using('scorbot').order_by("-createdt", "teamname")
+        return TeamInfoNew.objects.using('scorbot').order_by("-updatedate", "teamname")

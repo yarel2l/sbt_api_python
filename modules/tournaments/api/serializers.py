@@ -8,7 +8,7 @@ from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework import serializers
 
 from core.api.serializers import (
-    StatusSerializer
+    StatusSerializer, TimezoneSerializer
 )
 from core.models import (
     ScorbotTimezone, ScorbotEventType, ScorbotStatus,
@@ -51,26 +51,20 @@ class TournamentSerializer(serializers.ModelSerializer):
     status = StatusSerializer(read_only=True)
     state = serializers.SerializerMethodField()
     eventtype = serializers.SerializerMethodField()
-    timezone = serializers.SerializerMethodField()
+    timezone = TimezoneSerializer(read_only=True)
     tournament_users = TournamentUserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Tournament
-        fields = ["tournament_number", "name", "status", "active", "startdate", "enddate",
+        fields = ["event_number", "name", "status", "active", "startdate", "enddate",
                   "eventtype", "genderdesc", "website",
                   "contactname", "contactphone", "contactemail",
-                  "tournament_users",
                   "city", "state", "timezone", "gameduration",
                   "registrationpriceperteam", "registrationfee", "registrationstartdate", "registrationenddate",
                   "registrationcountteams", "registrationdiscount",
-                  "organization", "smsid",
-                  "information"]
-        read_only_fields = ["tournament_number"]
-
-    def get_timezone(self, obj):
-        if obj.timezone:
-            return str(obj.timezone.descrip)
-        return None
+                  "smsid", "organization",
+                  "information", "tournament_users"]
+        read_only_fields = ["event_number"]
 
     def get_eventtype(self, obj):
         if obj.eventtype:
@@ -112,7 +106,7 @@ class TournamentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tournament
-        fields = ["tournament_number", "name", "event_type", "contact_name", "contact_phone", "contact_email",
+        fields = ["event_number", "name", "event_type", "contact_name", "contact_phone", "contact_email",
                   "start_date", "end_date", "city", "state", "timezone", "duration",
                   "organization",
                   "smsid", "robot",
@@ -120,7 +114,7 @@ class TournamentCreateSerializer(serializers.ModelSerializer):
                   "registrationpriceperteam", "registrationfee", "registrationstartdate", "registrationenddate",
                   "registrationcountteams", "registrationdiscount"
                   ]
-        read_only_fields = ["tournament_number"]
+        read_only_fields = ["event_number"]
 
     def validate(self, attrs):
         # compare tournament dates start_date and end_date

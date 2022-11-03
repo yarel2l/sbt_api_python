@@ -7,6 +7,5 @@ from .views import (
 urlpatterns = [
 
     path('', TeamsListView.as_view(), name='teams'),
-    # path('<tournament_number>/', TournamentDetailsView.as_view(), name='tournament-details'),
 
 ]

@@ -22,7 +22,7 @@ class ScorbotDivisionFilter(filters.FilterSet):
 
     def search_filter_by_tournament(self, queryset, name, value):
         return (
-            queryset.filter(tournamentid__tournament_number__icontains=value) |
+            queryset.filter(tournamentid__event_number__icontains=value) |
             queryset.filter(tournamentid__name__icontains=value)
         )
 

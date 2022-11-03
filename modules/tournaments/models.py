@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Tournament(models.Model):
-    tournament_number = models.AutoField(db_column='ID', primary_key=True)
+    event_number = models.AutoField(db_column='ID', primary_key=True)
     name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)
     status = models.ForeignKey('core.ScorbotStatus', on_delete=models.SET_NULL, null=True, blank=True, db_column='Status')
     eventtype = models.ForeignKey('core.ScorbotEventType', on_delete=models.SET_NULL, db_column='EventType', blank=True, null=True)
@@ -48,7 +48,7 @@ class Tournament(models.Model):
                                                blank=True, null=True)
 
     def __str__(self):
-        return "{} - #{}".format(self.name, self.tournament_number)
+        return "#{} - {}".format(self.event_number, self.name)
 
     class Meta:
         managed = False
@@ -117,7 +117,7 @@ class TournamentInformation(models.Model):
                                         related_name="information")
     letter = models.TextField(db_column='Letter', blank=True, null=True)
     username = models.CharField(db_column='UserName', max_length=50, blank=True, null=True)
-    flyerurl = models.CharField(db_column='FlyerURL', max_length=200, blank=True, null=True)
+    flyerurl = models.URLField(db_column='FlyerURL', max_length=200, blank=True, null=True)
 
     class Meta:
         managed = False

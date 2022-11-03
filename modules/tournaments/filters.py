@@ -5,7 +5,7 @@ from .models import Tournament
 
 
 class TournamentFilter(filters.FilterSet):
-    search = filters.CharFilter(label=_("Search by Tournament Name and Number"), method="search_filter_by")
+    search = filters.CharFilter(label=_("Search by Event Name and Number"), method="search_filter_by")
     status = filters.CharFilter(label=_("Search by Status Id or Status descr"), method="search_filter_by_status")
     organization = filters.CharFilter(method="search_filter_by_organization")
     state = filters.CharFilter(method="search_filter_by_state")
@@ -20,7 +20,7 @@ class TournamentFilter(filters.FilterSet):
     def search_filter_by(self, queryset, name, value):
         return (
             queryset.filter(name__icontains=value) |
-            queryset.filter(tournament_number__icontains=value)
+            queryset.filter(event_number__icontains=value)
         )
 
     def search_filter_by_status(self, queryset, name, value):
