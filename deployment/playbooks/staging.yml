@@ -100,66 +100,66 @@
         enabled: true
         state: restarted
 
-    - name: Copy low worker unit
-      template:
-        src: worker.j2
-        dest: /lib/systemd/system/{{ project_name }}-worker-low@.service
-        backup: true
-      vars:
-        queue: low
-
-    - name: Enable low worker service
-      systemd:
-        name: "{{ project_name }}-worker-low@one.service"
-        daemon_reload: true
-        enabled: true
-        state: restarted
-
-    - name: Copy default worker unit
-      template:
-        src: worker.j2
-        dest: /lib/systemd/system/{{ project_name }}-worker-default@.service
-        backup: true
-      vars:
-        queue: default
-
-    - name: Enable default worker service
-      systemd:
-        name: "{{ project_name }}-worker-default@{{ item }}.service"
-        daemon_reload: true
-        enabled: true
-        state: restarted
-      loop:
-        - "one"
-        - "two"
-        - "three"
-
-    - name: Copy high worker unit
-      template:
-        src: worker.j2
-        dest: /lib/systemd/system/{{ project_name }}-worker-high@.service
-        backup: true
-      vars:
-        queue: high
-
-    - name: Enable high worker service
-      systemd:
-        name: "{{ project_name }}-worker-high@{{ item }}.service"
-        daemon_reload: true
-        enabled: true
-        state: restarted
-      loop:
-        - "one"
-        - "two"
-        - "three"
-        - "four"
-        - "five"
-
-    - name: Copy scheduler unit
-      template:
-        src: scheduler.j2
-        dest: /lib/systemd/system/{{ project_name }}-scheduler.service
-        backup: true
+#    - name: Copy low worker unit
+#      template:
+#        src: worker.j2
+#        dest: /lib/systemd/system/{{ project_name }}-worker-low@.service
+#        backup: true
+#      vars:
+#        queue: low
+#
+#    - name: Enable low worker service
+#      systemd:
+#        name: "{{ project_name }}-worker-low@one.service"
+#        daemon_reload: true
+#        enabled: true
+#        state: restarted
+#
+#    - name: Copy default worker unit
+#      template:
+#        src: worker.j2
+#        dest: /lib/systemd/system/{{ project_name }}-worker-default@.service
+#        backup: true
+#      vars:
+#        queue: default
+#
+#    - name: Enable default worker service
+#      systemd:
+#        name: "{{ project_name }}-worker-default@{{ item }}.service"
+#        daemon_reload: true
+#        enabled: true
+#        state: restarted
+#      loop:
+#        - "one"
+#        - "two"
+#        - "three"
+#
+#    - name: Copy high worker unit
+#      template:
+#        src: worker.j2
+#        dest: /lib/systemd/system/{{ project_name }}-worker-high@.service
+#        backup: true
+#      vars:
+#        queue: high
+#
+#    - name: Enable high worker service
+#      systemd:
+#        name: "{{ project_name }}-worker-high@{{ item }}.service"
+#        daemon_reload: true
+#        enabled: true
+#        state: restarted
+#      loop:
+#        - "one"
+#        - "two"
+#        - "three"
+#        - "four"
+#        - "five"
+#
+#    - name: Copy scheduler unit
+#      template:
+#        src: scheduler.j2
+#        dest: /lib/systemd/system/{{ project_name }}-scheduler.service
+#        backup: true
 
     - name: Enable scheduler service
       systemd:
@@ -168,10 +168,10 @@
         enabled: true
         state: restarted
 
-    - name: Generate ssl certificate with certbot
-      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --email {{admin_email}} --redirect --expand
-      args:
-        creates: /etc/letsencrypt/live/{{ domain }}
+#    - name: Generate ssl certificate with certbot
+#      shell: certbot --nginx -d {{domain}} --cert-name {{domain}} --agree-tos --non-interactive --email {{admin_email}} --redirect --expand
+#      args:
+#        creates: /etc/letsencrypt/live/{{ domain }}
 
     - name: Copy nginx site configuration
       template:
